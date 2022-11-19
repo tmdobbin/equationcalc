@@ -1,6 +1,6 @@
-import equationCalcModules
+import ecFunctions
 c = 3*10**8 # a constant to represent the speed of light
-wavelength = equationcalcmodules.inputInt("wavelength(if unknown put '?') = ")
+wavelength = ecFunctions.inputInt("wavelength(if unknown put '?') = ")
 
 if wavelength != "?":
     wavelength = float(wavelength)
@@ -8,7 +8,7 @@ if wavelength != "?":
     print(f"{frequency=}hz")
 
 else:
-    frequency = float(input("frequency = "))
+    frequency = float(ecFunctions.inputInt("frequency = "))
     wavelength = c / frequency
     print(f"{wavelength=}m")
     
