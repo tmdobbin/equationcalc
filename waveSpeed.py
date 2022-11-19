@@ -4,11 +4,11 @@ wavelength = ecFunctions.inputInt("wavelength(if unknown put '?') = ")
 
 if wavelength != "?":
     wavelength = float(wavelength)
-    frequency = c / wavelength
-    print(f"{frequency=}hz")
+    frequency = round((c / wavelength), 3)
+    print(f"{frequency=}hz (3dp)")
 
 else:
     frequency = float(ecFunctions.inputInt("frequency = "))
-    wavelength = c / frequency
-    print(f"{wavelength=}m")
+    wavelength = round((c / frequency), 3)
+    print(f"{wavelength=}m (3dp)")
     
