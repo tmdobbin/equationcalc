@@ -1,7 +1,7 @@
 import tkinter as tk
 c = 3*10**8 # Speed of Light
 root = tk.Tk()
-
+root.title("Wavespeed Calculator")
 root.geometry("750x250")
 
 root.grid_columnconfigure((0,1), weight=1)
