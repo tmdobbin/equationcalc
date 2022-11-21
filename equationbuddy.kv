@@ -1,0 +1,46 @@
+# Custom button
+<CustButton@Button>:
+    font_size: 32
+  
+<equationBuddyGrid>:
+    id: calculator
+    display: resultLabel
+    rows: 6
+    padding: 10
+    spacing: 10
+
+    BoxLayout:
+
+        Label:
+            id: freqLabel
+            text: "Frequency: "
+
+        TextInput:
+            id: freqEntry
+            font_size: 32
+            multiline: True
+
+        Label:
+            id: wavelengthLabel
+            text: "Wavelength: "
+
+        TextInput:
+            id: wavelengthEntry
+            font_size: 32
+            multiline: True
+
+        Label:
+            id: resultNameLabel
+            text: "Result: "
+
+        Label:
+            id: resultLabel
+            text: "0"
+
+
+
+    BoxLayout:
+        CustButton:
+            font_size: 20
+            text: "Calculate"
+            on_press: calculator.calcWavelength(wavelengthEntry.text, freqEntry.text)
