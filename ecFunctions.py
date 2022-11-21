@@ -1,26 +1,30 @@
 #A number of functions intended to be called from other scripts.
-def inputInt(message):
-    valid = False
-    while not valid:
+if __name__ == "__main__":
+    print("This is a library file")
 
-        try:
-            userInput = int(input(message))
-            valid = True
+else:
+    def inputInt(message):
+        valid = False
+        while not valid:
 
-        except ValueError:
-            continue
+            try:
+                userInput = int(input(message))
+                valid = True
 
-    return userInput
+            except ValueError:
+                continue
 
-def inputFloat(message):
-    valid = False
-    while not valid:
+        return userInput
 
-        try:
-            userInput = float(input(message))
-            valid = True
+    def inputFloat(message):
+        valid = False
+        while not valid:
 
-        except ValueError:
-            continue
-        
-    return userInput
+            try:
+                userInput = float(input(message))
+                valid = True
+
+            except ValueError:
+                continue
+            
+        return userInput
