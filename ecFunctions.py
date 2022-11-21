@@ -12,7 +12,7 @@ else:
                 valid = True
 
             except ValueError:
-                continue
+                valid = False
 
         return userInput
 
@@ -25,6 +25,6 @@ else:
                 valid = True
 
             except ValueError:
-                continue
+                valid = False
             
         return userInput
