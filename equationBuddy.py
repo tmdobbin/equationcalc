@@ -1,20 +1,22 @@
 import math
+import ecFunctions as ec
 
 def isFloat(num):
-		try:
-			float(num)
-			return True
-		except ValueError:
-			return False
+	try:
+		float(num)
+		return True
+	except ValueError:
+		return False
 
 def suvat():
 
 	def errorChecker(num, solvingFor):
 		try:
 			float(num)
-			return print(solvingFor, "=", num)
+			num = round(num, 3)
+			return f"{solvingFor} = {num}"
 		except:
-			return print("This scenario is impossible")
+			return ("This scenario is impossible")
 	
 	print("{:=^70}".format("Suvat Solver"))
 	print()
@@ -37,35 +39,35 @@ def suvat():
 	answer = ""
 	
 	if isFloat(t) == True and t < 0:
-		print("Time can not be negative")
+		return ("Time can not be negative")
 		
 	elif isFloat(v) == True and isFloat(u) == True and isFloat(a) == True and v < u and a > 0:
-		print("This scenario is not possible")
+		return ("This scenario is not possible")
 		
 	elif isFloat(v) == True and isFloat(u) == True and isFloat(a) == True and v > u and a < 0:
-		print("This scenario is not possible")
+		return ("This scenario is not possible")
 		
 	elif a == 0 and v != u:
-		print("This scenario is not possible") 
+		return ("This scenario is not possible") 
 		
 	elif v == u and a!= 0:
-		print("This scenario is not possible")
+		return ("This scenario is not possible")
 		
 	
 	if u == "?" and v != "?" and a != "?" and t != "?":
 		answer = a * t
 		answer = v - answer
-		errorChecker(answer, "u")
+		print(errorChecker(answer, "u"))
 	
 	if v == "?" and u != "?" and a != "?" and t != "?":
 		answer = a * t
 		answer = answer + u
-		errorChecker(answer, "v")
+		print(errorChecker(answer, "v"))
 		
 	if a == "?" and v != "?" and u != "?" and t != "?":
 		answer = v - u 
 		if t == 0:
-			print("Time can not be equal to 0 in this scenario")
+			return ("Time can not be equal to 0 in this scenario")
 			
 		answer = answer / t 
 		errorChecker(answer, "a")
@@ -73,7 +75,7 @@ def suvat():
 	if t == "?" and v != "?" and u !="?" and a != "?":
 		answer = v - u 
 		if a == 0:
-			print("Acceleration can not be equal to 0 in this scenario")
+			return ("Acceleration can not be equal to 0 in this scenario")
 			
 		answer = answer / a 
 		errorChecker(answer, "t")
@@ -81,25 +83,25 @@ def suvat():
 	if s == "?" and v != "?" and t != "?" and a != "?":
 		answer = v * t 
 		answer = answer - (0.5 * a * (t*t))
-		errorChecker(answer, "s")
+		print(errorChecker(answer, "s"))
 		
 	if v == "?" and s != "?" and a != "?" and t != "?":
 		answer = a * (t*t)
 		answer = s + answer
 		if t == 0:
-			print("Time can not be equal to 0 in this scenario")
+			return ("Time can not be equal to 0 in this scenario")
 		answer = answer / (t * 2)
-		errorChecker(answer, "v")
+		print(errorChecker(answer, "v"))
 			
 	if a == "?" and v != "?" and t != "?" and s != "?":
 		answer = v * t 
 		answer = answer - s 
 		answer = answer * 2 
 		if t == 0:
-			print("Time can not be equal to 0 in this scenario")
+			return ("Time can not be equal to 0 in this scenario")
 			
 		answer = answer / (t * t)
-		errorChecker(answer, "a")
+		print(errorChecker(answer, "a"))
 		
 	if t == "?" and v != "?" and a != "?" and s != "?":
 		answer = v * v 
@@ -107,100 +109,102 @@ def suvat():
 		answer = answer ** (1/2)
 		answer = v - answer
 		if a == 0:
-			print("Acceleration can not be equal to 0 in this scenario")
-			
+			return ("Acceleration can not be equal to 0 in this scenario")
+
 		answer = answer / a  
-		errorChecker(answer, "t")
+		print(errorChecker(answer, "t"))
 		
 	if s == "?" and u != "?" and t != "?" and a != "?":
 		answer = t * t
 		answer = answer * a * 0.5 
 		answer = (u * t) + answer
-		errorChecker(answer, "s")
+		print(errorChecker(answer, "s"))
 		
 	if u == "?" and s != "?" and a != "?" and t != "?":
 		answer = t * t 
 		answer = answer * a 
 		answer = s - answer
 		if t == 0:
-			print("Time can not be equal to 0 in this scenario")
+			return ("Time can not be equal to 0 in this scenario")
 			
 		answer = answer / (2 * t)
-		errorChecker(answer, "u")
+		print(errorChecker(answer, "u"))
 		
 	if a == "?" and s != "?" and u != "?" and t != "?":
 		answer = u * t
 		answer = s - answer
 		answer = 2 * answer
 		if t == 0:
-			print("Time can not be equal to 0 in this scenario")
+			return ("Time can not be equal to 0 in this scenario")
 			
 		answer = answer / (t * t)
-		errorChecker(answer, "a")
+		print(errorChecker(answer, "a"))
 	
 	if t == "?" and a != "?" and s != "?" and u != "?":
-		answer = u * u 
-		answer = (2 * a * s) + answer
+		uSq = u * u 
+		answer = (2 * a * s)
+		answer = answer + uSq
+		answer = answer ** (1/2)
 		answer = answer - u
 		if a == 0:
-			print("Acceleration can not be equal to 0 in this scenario")
+			return ("Acceleration can not be equal to 0 in this scenario")
 			
 		answer = answer / a
-		errorChecker(answer, "t")
+		print(errorChecker(answer, "t"))
 		
 	if s == "?" and t != "?" and u != "?" and v != "?":
 		answer = t / 2
 		answer = answer * (u + v)
-		errorChecker(answer, "s")
+		print(errorChecker(answer, "s"))
 		
 	if u == "?" and s != "?" and t != "?" and v != "?":
 		answer = 2 * s
 		if t == 0:
-			print("Time can not be equal to 0 in this scenario")
+			return ("Time can not be equal to 0 in this scenario")
 			
 		answer = answer / t
 		answer = answer + v
-		errorChecker(answer, "u")
+		print(errorChecker(answer, "u"))
 		
 	if v == "?" and s != "?" and t != "?" and u != "?":
 		answer = 2 * s 
 		if t == 0:
-			print("Time can not be equal to 0 in this scenario")
+			return ("Time can not be equal to 0 in this scenario")
 			
 		answer = answer / t
 		answer = answer - u 
-		errorChecker(answer, "v")
+		print(errorChecker(answer, "v"))
 	
 	if t == "?" and s != "?" and u != "?" and v != "?":
 		answer = 2 * s
 		answer = answer / (u + v)
-		errorChecker(answer, "t")
+		print(errorChecker(answer, "t"))
 		
 	if s == "?" and u != "?" and v != "?" and a != "?":
 		answer = (u * u) + (v * v)
 		answer2 = (2 * a)
 		if answer2 == 0:
-			print("Acceleration can not be equal to 0 in this scenario")
+			return ("Acceleration can not be equal to 0 in this scenario")
 		answer = answer / answer2
-		errorChecker(answer, "s")
+		print(errorChecker(answer, "s"))
 		
 	if u == "?" and a != "?" and s != "?" and v != "?":
 		answer = (2 * a * s) - (v * v)
 		answer = answer ** (1/2)
-		errorChecker(answer, "u")
+		print(errorChecker(answer, "u"))
 		
 	if v == "?" and u != "?" and a != "?" and s != "?":
 		answer = (u * u) + (2 + a + s)
 		answer = answer ** (1/2)
-		errorChecker(answer, "v")
+		print(errorChecker(answer, "v"))
 		
 	if a == "?" and v != "?" and u != "?" and s != "?":
 		answer = (v * v) - (u * u)
 		if s == 0:
-			print("Displacement can not be equal to 0 in this scenario")
+			return ("Displacement can not be equal to 0 in this scenario")
 		answer = answer / (2 * s)
-		errorChecker(answer, "a")
-			
+		print(errorChecker(answer, "a"))
+
 def QuadraticFormula():
 	
 	def QuadraticErrorChecker(X1, X2):
@@ -258,7 +262,52 @@ def physicsValues():
 	print("Neutron Mass = 1.67 x 10^-27 kg")
 	print("Gravity = 9.81 N/kg")
 
+def photonEnergy():
+	print("{:=^70}".format("PHOTON ENERGY"))
+	print()
+	
+	speedOfLight = 3*10**8
+	plancksConstant = 6.63*10**-34
+
+	wavelength = input("wavelength (in nanometres) = ")
+
+	if wavelength == "?":
+		frequency = input("frequency (in hertz) = ")
+
+		if frequency == str(frequency) and frequency != "?":
+			frequency = ec.standardFormUserToInt(frequency)
+			E = str(plancksConstant * frequency)
+			E1 = E[:5]
+			E2 = E[len(E)-3:]
+			E3 = "E = "+E1+" x 10^"+E2
+			print(E3)
+
+		else:
+			frequency = float(frequency)
+			E = str(plancksConstant * frequency)
+			E1 = E[:5]
+			E2 = E[len(E)-3:]
+			E3 = "E = "+E1+" x 10^"+E2
+			print(E3)
+
+	elif wavelength == str(wavelength) and wavelength != "?":
+		wavelength = ec.standardFormUserToInt(wavelength)
+		E = str(plancksConstant * speedOfLight / wavelength * (10 ** 9))
+		E1 = E[:5]
+		E2 = E[len(E)-3:]
+		E3 = "E = "+E1+" x 10^"+E2
+		print(E3)
+
+	else:
+		wavelength = float(wavelength)
+		E = str(plancksConstant * speedOfLight / wavelength  * (10 ** 9))
+		E1 = E[:5]
+		E2 = E[len(E)-3:]
+		E3 = "E = "+E1+" x 10^"+E2
+		print(E3)
+
 def returnToMenu():
+
 	print("\n{:=^70}".format("Return To Menu?"))
 	menuReturn = input("\nWould you like to go back to menu? (y/n)\n")
 	if menuReturn == "y":
@@ -278,9 +327,10 @@ def runMenu():
 	print("1. Suvat Solver")
 	print("2. Quadratic Formula")
 	print("3. Physics Values")
-	print("4. Exit")
+	print("4. Photon Energy")
+	print("5. Exit")
 	print()
-	print("======================================================================")
+	print("{:=^70}".format("SELECT OPTION"))
 	print()
 	option = int(input("Select a menu option:\n"))
 	print()
@@ -298,6 +348,10 @@ def runMenu():
 		returnToMenu()
 
 	elif option == 4:
-		print("\nThank you for using Equation Buddy!")
+		photonEnergy()
+		returnToMenu()
+	
+	elif option == 5:
+		print("Thank you for using Equation Buddy!")
 
 runMenu()
