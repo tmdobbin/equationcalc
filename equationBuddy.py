@@ -212,6 +212,9 @@ def QuadraticFormula():
 		if isinstance(X1, complex):
 			print("The first value is an imaginary number")
 			imaginaryCounter = imaginaryCounter + 1
+		elif len(str(X1)) > 4:
+			X1 = round(X1, 3)
+			print ("x =", X1)
 		else:
 			print("x =", X1)
 			
@@ -220,6 +223,9 @@ def QuadraticFormula():
 			imaginaryCounter = imaginaryCounter + 1
 		elif X1 == X2:
 			print("This equation has 1 real root")
+		elif len(str(X2)) > 4:
+			X2 = round(X2, 3)
+			print ("x =", X2)
 		else:
 			print("x =", X2)
 			
