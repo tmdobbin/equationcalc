@@ -20,20 +20,20 @@ def suvat():
 	
 	print("{:=^70}".format("Suvat Solver"))
 	print()
-	s = input("s (if unknown put '?') = ")
-	if s != "?":
+	s = input("s (if unknown put '') = ")
+	if s != "":
 		s = float(s)
-	u = input("u (if unknown put '?') = ")
-	if u != "?":
+	u = input("u (if unknown put '') = ")
+	if u != "":
 		u = float(u)
-	v = input("v (if unknown put '?') = ")
-	if v != "?":
+	v = input("v (if unknown put '') = ")
+	if v != "":
 		v = float(v)
-	a = input("a (if unknown put '?') = ")
-	if a != "?":
+	a = input("a (if unknown put '') = ")
+	if a != "":
 		a = float(a)
-	t = input("t (if unknown put '?') = ")
-	if t != "?":
+	t = input("t (if unknown put '') = ")
+	if t != "":
 		t = float(t)
 	print()
 	answer = ""
@@ -54,17 +54,17 @@ def suvat():
 		return ("This scenario is not possible")
 		
 	
-	if u == "?" and v != "?" and a != "?" and t != "?":
+	if u == "" and v != "" and a != "" and t != "":
 		answer = a * t
 		answer = v - answer
 		print(errorChecker(answer, "u"))
 	
-	if v == "?" and u != "?" and a != "?" and t != "?":
+	if v == "" and u != "" and a != "" and t != "":
 		answer = a * t
 		answer = answer + u
 		print(errorChecker(answer, "v"))
 		
-	if a == "?" and v != "?" and u != "?" and t != "?":
+	if a == "" and v != "" and u != "" and t != "":
 		answer = v - u 
 		if t == 0:
 			return ("Time can not be equal to 0 in this scenario")
@@ -72,7 +72,7 @@ def suvat():
 		answer = answer / t 
 		errorChecker(answer, "a")
 	
-	if t == "?" and v != "?" and u !="?" and a != "?":
+	if t == "" and v != "" and u !="" and a != "":
 		answer = v - u 
 		if a == 0:
 			return ("Acceleration can not be equal to 0 in this scenario")
@@ -80,12 +80,12 @@ def suvat():
 		answer = answer / a 
 		errorChecker(answer, "t")
 		
-	if s == "?" and v != "?" and t != "?" and a != "?":
+	if s == "" and v != "" and t != "" and a != "":
 		answer = v * t 
 		answer = answer - (0.5 * a * (t*t))
 		print(errorChecker(answer, "s"))
 		
-	if v == "?" and s != "?" and a != "?" and t != "?":
+	if v == "" and s != "" and a != "" and t != "":
 		answer = a * (t*t)
 		answer = s + answer
 		if t == 0:
@@ -93,7 +93,7 @@ def suvat():
 		answer = answer / (t * 2)
 		print(errorChecker(answer, "v"))
 			
-	if a == "?" and v != "?" and t != "?" and s != "?":
+	if a == "" and v != "" and t != "" and s != "":
 		answer = v * t 
 		answer = answer - s 
 		answer = answer * 2 
@@ -103,7 +103,7 @@ def suvat():
 		answer = answer / (t * t)
 		print(errorChecker(answer, "a"))
 		
-	if t == "?" and v != "?" and a != "?" and s != "?":
+	if t == "" and v != "" and a != "" and s != "":
 		answer = v * v 
 		answer = answer - (2 * a * s)
 		answer = answer ** (1/2)
@@ -114,13 +114,13 @@ def suvat():
 		answer = answer / a  
 		print(errorChecker(answer, "t"))
 		
-	if s == "?" and u != "?" and t != "?" and a != "?":
+	if s == "" and u != "" and t != "" and a != "":
 		answer = t * t
 		answer = answer * a * 0.5 
 		answer = (u * t) + answer
 		print(errorChecker(answer, "s"))
 		
-	if u == "?" and s != "?" and a != "?" and t != "?":
+	if u == "" and s != "" and a != "" and t != "":
 		answer = t * t 
 		answer = answer * a 
 		answer = s - answer
@@ -130,7 +130,7 @@ def suvat():
 		answer = answer / (2 * t)
 		print(errorChecker(answer, "u"))
 		
-	if a == "?" and s != "?" and u != "?" and t != "?":
+	if a == "" and s != "" and u != "" and t != "":
 		answer = u * t
 		answer = s - answer
 		answer = 2 * answer
@@ -140,7 +140,7 @@ def suvat():
 		answer = answer / (t * t)
 		print(errorChecker(answer, "a"))
 	
-	if t == "?" and a != "?" and s != "?" and u != "?":
+	if t == "" and a != "" and s != "" and u != "":
 		uSq = u * u 
 		answer = (2 * a * s)
 		answer = answer + uSq
@@ -152,12 +152,12 @@ def suvat():
 		answer = answer / a
 		print(errorChecker(answer, "t"))
 		
-	if s == "?" and t != "?" and u != "?" and v != "?":
+	if s == "" and t != "" and u != "" and v != "":
 		answer = t / 2
 		answer = answer * (u + v)
 		print(errorChecker(answer, "s"))
 		
-	if u == "?" and s != "?" and t != "?" and v != "?":
+	if u == "" and s != "" and t != "" and v != "":
 		answer = 2 * s
 		if t == 0:
 			return ("Time can not be equal to 0 in this scenario")
@@ -166,7 +166,7 @@ def suvat():
 		answer = answer + v
 		print(errorChecker(answer, "u"))
 		
-	if v == "?" and s != "?" and t != "?" and u != "?":
+	if v == "" and s != "" and t != "" and u != "":
 		answer = 2 * s 
 		if t == 0:
 			return ("Time can not be equal to 0 in this scenario")
@@ -175,12 +175,12 @@ def suvat():
 		answer = answer - u 
 		print(errorChecker(answer, "v"))
 	
-	if t == "?" and s != "?" and u != "?" and v != "?":
+	if t == "" and s != "" and u != "" and v != "":
 		answer = 2 * s
 		answer = answer / (u + v)
 		print(errorChecker(answer, "t"))
 		
-	if s == "?" and u != "?" and v != "?" and a != "?":
+	if s == "" and u != "" and v != "" and a != "":
 		answer = (u * u) + (v * v)
 		answer2 = (2 * a)
 		if answer2 == 0:
@@ -188,17 +188,17 @@ def suvat():
 		answer = answer / answer2
 		print(errorChecker(answer, "s"))
 		
-	if u == "?" and a != "?" and s != "?" and v != "?":
+	if u == "" and a != "" and s != "" and v != "":
 		answer = (2 * a * s) - (v * v)
 		answer = answer ** (1/2)
 		print(errorChecker(answer, "u"))
 		
-	if v == "?" and u != "?" and a != "?" and s != "?":
+	if v == "" and u != "" and a != "" and s != "":
 		answer = (u * u) + (2 + a + s)
 		answer = answer ** (1/2)
 		print(errorChecker(answer, "v"))
 		
-	if a == "?" and v != "?" and u != "?" and s != "?":
+	if a == "" and v != "" and u != "" and s != "":
 		answer = (v * v) - (u * u)
 		if s == 0:
 			return ("Displacement can not be equal to 0 in this scenario")
@@ -277,10 +277,10 @@ def photonEnergy():
 
 	wavelength = input("wavelength (in nanometres) = ")
 
-	if wavelength == "?":
+	if wavelength == "":
 		frequency = input("frequency (in hertz) = ")
 
-		if frequency == str(frequency) and frequency != "?":
+		if " x 10^" in frequency:
 			frequency = ec.standardFormUserToInt(frequency)
 			E = str(plancksConstant * frequency)
 			E1 = E[:5]
@@ -296,7 +296,7 @@ def photonEnergy():
 			E3 = "E = "+E1+" x 10^"+E2
 			print(E3)
 
-	elif wavelength == str(wavelength) and wavelength != "?":
+	elif " x 10^" in wavelength:
 		wavelength = ec.standardFormUserToInt(wavelength)
 		E = str(plancksConstant * speedOfLight / wavelength * (10 ** 9))
 		E1 = E[:5]
