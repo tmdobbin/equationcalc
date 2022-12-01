@@ -1,4 +1,4 @@
-# v.0.0.11
+# v0.0.11
 
 import math
 import ecFunctions as ec
