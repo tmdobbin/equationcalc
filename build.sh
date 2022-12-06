@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 if [[ $1 == "" ]]; then
 	echo "Please use ./build.sh [OPTION] where OPTION={debug,release}"
 	exit
@@ -14,11 +14,12 @@ if [[ $1 == "" ]]; then
 	echo ""
 fi
 
-if [[ "OSTYPE" == "darwin"* ]]; then
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	pip3 install kivy-ios
 	echo "OSTYPE is Darwin. Attempting to build for iOS."
-	buildozer -v ios $1
+	buildozer  ios $1
 else
-	buildozer -v android $1
+	buildozer android $1
 fi
 #FOR RELEASE ONLY
 #buildozer -v android release
