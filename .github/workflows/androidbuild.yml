@@ -8,8 +8,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Symlink cython3 to cython
+      run: |
+          sudo ln -s /usr/bin/cython3 /usr/local/bin/cython    
+
     - name: Run build.sh (DEBUG)
       run: |
         chmod a+x build.sh
+
         ./build.sh debug
  
