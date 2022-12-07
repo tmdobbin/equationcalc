@@ -11,6 +11,9 @@ jobs:
     - name: Install Packages
       run: |
           sudo apt install cython3
+          sudo apt update
+          sudo apt install build-essential
+          sudo apt install libstdc++6
           sudo apt install aidl
     - name: Symlink cython3 to cython
       run: |
