@@ -8,6 +8,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Install Packages
+      run: |
+          sudo apt install cython3
     - name: Symlink cython3 to cython
       run: |
           sudo ln -s /usr/bin/cython3 /usr/local/bin/cython    
