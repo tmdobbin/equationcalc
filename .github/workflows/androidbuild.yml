@@ -27,4 +27,11 @@ jobs:
         chmod a+x build.sh
 
         ./build.sh debug
+    - name: Upload apk to git
+      run: |
+        git add bin/
+        git commit -m "Auto Build apk"
+        git push -u origin main
+      
+        
  
