@@ -5,12 +5,11 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.8", "3.9", "3.10"]
+
     steps:
     - uses: actions/checkout@v3
     - name: List files
       run: |
-        ls -R
+        chmod a+x build.sh
+        ./build.sh
  
