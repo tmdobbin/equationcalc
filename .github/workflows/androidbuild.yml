@@ -8,8 +8,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: List files
+    - name: Run build.sh (DEBUG)
       run: |
         chmod a+x build.sh
-        ./build.sh
+        ./build.sh debug
  
