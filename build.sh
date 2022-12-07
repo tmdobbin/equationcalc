@@ -6,7 +6,9 @@ fi
 pip3 install kivy
 pip3 install --user --upgrade buildozer
 pip3 install cpython
-cp equationBuddy.py main.py
+#RELEASE
+#cp equationBuddy.py main.py
+cp kivyGUITest.py main.py
 buildozer init
 echo "Building in $1 mode"
 
