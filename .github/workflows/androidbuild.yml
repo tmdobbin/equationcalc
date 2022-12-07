@@ -11,6 +11,7 @@ jobs:
     - name: Install Packages
       run: |
           sudo apt install cython3
+          sudo apt install aidl
     - name: Symlink cython3 to cython
       run: |
           sudo ln -s /usr/bin/cython3 /usr/local/bin/cython    
