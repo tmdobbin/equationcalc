@@ -26,6 +26,7 @@ class equationBuddyGrid(GridLayout):
 
 class equationBuddyApp(App):
     def build(self):
+	print("This is a test string")
         return equationBuddyGrid()
 
 if __name__ == "__main__":
