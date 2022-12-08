@@ -47,6 +47,7 @@ jobs:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
         body: Auto build of the android package *.apk
+        file: bin/*.apk
         draft: false
         prerelease: true
  
