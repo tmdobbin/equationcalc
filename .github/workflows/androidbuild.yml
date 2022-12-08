@@ -4,10 +4,12 @@ on: [push]
 
 jobs:
   build:
+    name: Build and create release
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
+    - uses: svenstaro/upload-release-action@v2
     - name: Install Packages
       run: |
           sudo apt -y install git zip unzip python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
@@ -34,6 +36,18 @@ jobs:
         git add bin/
         git commit -m "Auto Build apk"
         git push -u origin main
-      
-        
+    
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        body: Auto build of the android package *.apk
+        draft: false
+        prerelease: true
  
