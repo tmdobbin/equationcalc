@@ -17,6 +17,8 @@ jobs:
           sudo apt install build-essential
           sudo apt install libstdc++6
           sudo apt install aidl
+          pip3 install -r requirements.txt
+          
     - name: Symlink cython3 to cython
       run: |
           sudo ln -s /usr/bin/cython3 /usr/local/bin/cython    
