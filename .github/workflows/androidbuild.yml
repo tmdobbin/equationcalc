@@ -9,7 +9,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: svenstaro/upload-release-action@v2
     - name: Install Packages
       run: |
           sudo apt -y install git zip unzip python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
