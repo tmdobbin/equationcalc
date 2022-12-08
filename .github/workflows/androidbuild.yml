@@ -28,9 +28,11 @@ jobs:
         chmod a+x build.sh
 
         ./build.sh debug
-        echo "Attempting to copy *.apk to ./"
-        cp bin/*.apk ./equationBuddy_DEBUG.apk
-        ls -Ra
+        echo "Listing all files recursively (inc. hidden files) - DEBUG"
+        ls -Ra 
+        
+ #       echo "Attempting to copy *.apk to ./"
+ #       cp bin/*.apk ./equationBuddy_DEBUG.apk
  #   - name: Upload apk to git
  #     run: |
  #       git config --global user.email "ryandobson@duck.com"
