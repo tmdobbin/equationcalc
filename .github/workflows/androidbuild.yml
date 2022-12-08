@@ -28,25 +28,42 @@ jobs:
         chmod a+x build.sh
 
         ./build.sh debug
-    - name: Upload apk to git
-      run: |
-        git config --global user.email "ryandobson@duck.com"
-        git config --global user.name "TmDobbin"
-        git add bin/
-        git commit -m "Auto Build apk"
-        git push -u origin main
-    
+        echo "Listing all files recursively (inc. hidden files) - DEBUG"
+        ls -Ra 
+        
+ #       echo "Attempting to copy *.apk to ./"
+ #       cp bin/*.apk ./equationBuddy_DEBUG.apk
+ #   - name: Upload apk to git
+ #     run: |
+ #       git config --global user.email "ryandobson@duck.com"
+ #       git config --global user.name "TmDobbin"
+ #       git add bin/
+ #       git commit -m "Auto Build apk"
+ #       git push -u origin main
+    #/equationBuddy_DEBUG.apk
     - name: Checkout code
       uses: actions/checkout@v2
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+   # - name: Create Release
+   #   id: create_release
+   #   uses: actions/create-release@v1
+   #   env:
+   #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+   #   with:
+   #     tag_name: debug_apk
+   #     release_name: Autobuild ${{ github.ref }}
+   #     body: Auto build of the android package *.apk
+   #     file: bin/*.apk
+   #     draft: false
+   #     prerelease: true
+        
+    - name: Create Release and Upload Files
+      uses: "marvinpinto/action-automatic-releases@latest"
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        body: Auto build of the android package *.apk
-        draft: false
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "debug_apk"
         prerelease: true
+        title: "APK Autobuild"
+        files: |
+          bin/*.apk
+      
  
