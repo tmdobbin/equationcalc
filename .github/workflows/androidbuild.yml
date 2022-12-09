@@ -1,6 +1,9 @@
 name: Build Android version
 
-on: [push]
+on:
+  push:
+    paths:
+      - "*.py"
 
 jobs:
   build:
