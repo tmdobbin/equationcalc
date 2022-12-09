@@ -1,5 +1,4 @@
 #A number of functions intended to be called from other scripts.
-# This comment can be deleted at any time, it is a temporary change to test the apk autobuild
 if __name__ == "__main__":
     print("This is a library file")
 
