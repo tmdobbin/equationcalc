@@ -8,11 +8,6 @@ fi
 cp kivyGUITest.py main.py
 buildozer init
 echo "Building in $1 mode"
-
-if [[ $1 == "" ]]; then
-	echo ""
-fi
-
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	pip3 install kivy-ios
 	echo "OSTYPE is Darwin. Attempting to build for iOS."
