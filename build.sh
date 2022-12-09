@@ -3,10 +3,7 @@ if [[ $1 == "" ]]; then
 	echo "Please use ./build.sh [OPTION] where OPTION={debug,release}"
 	exit
 fi
-pip3 install kivy
-pip3 install --user --upgrade buildozer
-pip3 install cpython
-#RELEASE
+#RELEASE - equationBuddy.py should be the main file instead of the current kivyGUITest.py.
 #cp equationBuddy.py main.py
 cp kivyGUITest.py main.py
 buildozer init
@@ -23,7 +20,4 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 else
 	buildozer android $1
 fi
-#FOR RELEASE ONLY
-#buildozer -v android release
-#buildozer -v ios release
 

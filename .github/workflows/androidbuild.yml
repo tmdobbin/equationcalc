@@ -39,7 +39,7 @@ jobs:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: "debug_apk"
         prerelease: true
-        title: "APK Autobuild"
+        title: "APK Autobuild (DEBUG)"
         files: |
           bin/*.apk
       
