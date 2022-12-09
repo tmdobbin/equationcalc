@@ -1,0 +1,2 @@
+Placeholder file to ensure the existence of the bin/ directory (not sure if this is
+100% necessary but doing it just in case to avoid issues with the git actions/workflow)
