@@ -1,7 +1,6 @@
-# v0.0.11
-
 import math
 import ecFunctions as ec
+pi = math.pi
 
 def isFloat(num):
 	try:
@@ -207,7 +206,7 @@ def suvat():
 		answer = answer / (2 * s)
 		print(errorChecker(answer, "a"))
 
-def QuadraticFormula():
+def quadraticFormula():
 	
 	def QuadraticErrorChecker(X1, X2):
 		imaginaryCounter = 0
@@ -328,38 +327,203 @@ def returnToMenu():
 		print("\nThank you for using Equation Buddy!")
 
 def runMenu():
+	print("{:=^70}".format("Equation Buddy"))
+	print("1. Maths")
+	print("2. Physics")
+	print("3. Exit")
 	
-	print()
-	print("{:=^70}".format("MAIN MENU"))
-	print()
+	option = int(input("Enter an option"))
+	
+	if option == 1:
+		mathsMenu()
+	elif option == 2:
+		physicsMenu()
+	elif option == 3:
+		exit()
+	else:
+		print("Please select a valid option")
+	
+def mathsMenu():
+	print("{:=^70}".format("Maths Functions"))
 	print("1. Suvat Solver")
-	print("2. Quadratic Formula")
-	print("3. Physics Values")
-	print("4. Photon Energy")
-	print("5. Exit")
-	print()
-	print("{:=^70}".format("SELECT OPTION"))
-	print()
-	option = int(input("Select a menu option:\n"))
-	print()
+	print("2. Quadratic Solver")
+	print("3. Area Solver")
+	print("4. Main Menu")
+	print("5. Exit")	
 	
-	if option	== 1:
+	mathOption = int(input("Enter an option"))
+	
+	if mathOption == 1:
 		suvat()
 		returnToMenu()
-
-	elif option == 2:
-		QuadraticFormula()
+	elif mathOption == 2:
+		quadraticFormula()
 		returnToMenu()
-
-	elif option == 3:
+	elif mathOption == 3:
+		areaMenu()
+		returnToMenu()
+	elif mathOption == 4:
+		runMenu()
+	elif mathOption == 5:
+		exit()
+	else:
+		print("Please select a valid option")
+		
+def physicsMenu():
+	print("{:=^70}".format("Physics Functions"))
+	print("1. Physics Values")
+	print("2. Photon Energy")
+	print("3. Main Menu")
+	print("4. Exit")
+	
+	physicsOption = int(input("Enter an Option"))
+	
+	if physicsOption == 1:
 		physicsValues()
 		returnToMenu()
-
-	elif option == 4:
+	elif physicsOption == 2:
 		photonEnergy()
 		returnToMenu()
-	
-	elif option == 5:
-		print("Thank you for using Equation Buddy!")
+	elif physicsOption == 3:
+		runMenu()
+	elif physicsOption == 4:
+		exit()
+	else:
+		print("Please select a valid option")
+  
+def get_value():
+    
+    valid = False
+    while valid == False:
+        
+        try:
+            value = float(input())
+            if value > 0:
+                valid = True
+            else:
+                print("You must enter a positive number")
 
+        except:
+            print("You must enter a positive number without any characters or symbols")
+    return value
+
+def calculate_square_area(side):
+    area = side**2
+    return area
+
+def calculate_triangle_area(base, height):
+
+    area = base * height/2
+    return area
+
+def calculate_elipse_area(a,b):
+
+    area = a*b*pi
+    return area
+
+def calculate_circle_area(radius, pi):
+
+    area = radius**2*pi
+    return area
+
+def calculate_trapezium_area(base, top, height):
+
+    area = ((base + top)/2)*height
+    return area
+
+def calculate_parallelogram_area(base,height):
+
+    area = base * height
+    return area
+
+def square():
+    
+    print("enter side of square")
+    side = get_value()
+    area = calculate_square_area(side)
+    print("the area of the square is", area)
+
+def elipse():
+    
+    print("enter radius 1 of your elipse")
+    a = get_value()
+    print("enter radius 2 of your elipse")
+    b = get_value()
+    area = calculate_elipse_area(a,b)
+    print("The area of your elipse is", area)
+
+def circle():
+    
+    print("enter the radius of the circle")
+    radius = get_value()
+    area = calculate_circle_area(radius, pi)
+    print("the area of your circle is", area)
+
+def triangle():
+
+    print ("enter the base of your triangle")
+    base = get_value()
+    print("enter the height of your triangle")
+    height = get_value()
+    area = calculate_triangle_area(base, height)
+    print ("the area of your triangle is", area)
+
+def trapezium():
+
+    print ("Enter side A of your trapezium")
+    base = get_value()
+    print("Enter side B of your trapezium")
+    top = get_value()
+    print("Enter the height of your trapezium")
+    height = get_value()
+    area = calculate_trapezium_area(base, top, height)
+    print ("the area of your trapezium", area)
+
+def parallelogram():
+    print ("Enter the base of your parallelogram")
+    base = get_value()
+    print ("Enter the height of your parallelogram")
+    height = get_value()
+    area = calculate_parallelogram_area(base,height)
+    print ("The area of your parallelogram is", area) 
+
+def areaMenu():
+
+    end_programme = False
+    
+    while end_programme == False:
+        print ("{:=^70}".format("Pick A Shape"))
+        print ("1. Area of Square")
+        print ("2. Area of Triangle")
+        print ("3. Area of Circle")
+        print ("4. Area of Trapezium")
+        print ("5. Area of Parallelogram")
+        print ("6. Area of an Elipse")
+        print ("7. Return to Original Menu")
+        choice = input()
+        
+        while choice not in ["1", "2", "3", "4","5","6","7"]:
+            print ("You must choose 1,2,3,4,5,6 or 7")
+            print("please reselect number")
+            choice = input()
+        if choice == "1":
+            square()
+        elif choice =="2":
+            triangle()
+        elif choice =="3":
+            circle()
+        elif choice =="4":
+            trapezium()
+        elif choice =="5":
+            parallelogram()
+        elif choice =="6":
+            elipse()
+        elif choice =="7":
+            end_programme = True
+            
+    print ("Returning to the First Menu, thank you")
+
+def exit():
+    print("Thanks for using Equation Buddy, Goodbye!")
+    
 runMenu()
