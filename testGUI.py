@@ -1,4 +1,6 @@
 #!/usr/local/python3
+#THIS SCRIPT IS NO LONGER USED AS TKINTER HAS BEEN DROPPED FROM THE PROJECT
+print("This script is obsolete. Please use the Kivy GUI.")
 import tkinter as tk
 c = 3*10**8 # Speed of Light
 root = tk.Tk()
