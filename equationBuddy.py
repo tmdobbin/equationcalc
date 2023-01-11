@@ -1,3 +1,5 @@
+# ver 0.1
+
 import math
 import ecFunctions as ec
 pi = math.pi
