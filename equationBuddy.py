@@ -1,4 +1,4 @@
-# ver 0.1
+#Version 0.1.1
 
 import math
 import ecFunctions as ec
@@ -11,15 +11,17 @@ def isFloat(num):
 	except ValueError:
 		return False
 
-def suvat(s, u, v, a, t):
+def suvat(s, u, v, a, t, rounding):
 
 	finalresult = ""
 
-	def errorChecker(num, solvingFor):
+	def errorChecker(num, solvingFor, rounding):
 		try:
 			float(num)
-			num = round(num, 3)
-			return f"{solvingFor} = {num}"
+			if rounding:
+				num = round(num, 3)
+			print(f"{solvingFor} = {num}")
+			return f" {solvingFor} = {num}"
 		except:
 			return ("This scenario is impossible")
 	
@@ -62,12 +64,12 @@ def suvat(s, u, v, a, t):
 	if u == "" and v != "" and a != "" and t != "":
 		answer = a * t
 		answer = v - answer
-		finalresult = finalresult + (errorChecker(answer, "u"))
+		finalresult = finalresult + (errorChecker(answer, "u", rounding))
 	
 	if v == "" and u != "" and a != "" and t != "":
 		answer = a * t
 		answer = answer + u
-		finalresult = finalresult + (errorChecker(answer, "v"))
+		finalresult = finalresult + (errorChecker(answer, "v", rounding))
 		
 	if a == "" and v != "" and u != "" and t != "":
 		answer = v - u 
@@ -75,7 +77,7 @@ def suvat(s, u, v, a, t):
 			finalresult = finalresult + ("Time can not be equal to 0 in this scenario")
 			
 		answer = answer / t 
-		errorChecker(answer, "a")
+		errorChecker(answer, "a", rounding)
 	
 	if t == "" and v != "" and u !="" and a != "":
 		answer = v - u 
@@ -83,12 +85,12 @@ def suvat(s, u, v, a, t):
 			finalresult = finalresult +  ("Acceleration can not be equal to 0 in this scenario")
 			
 		answer = answer / a 
-		errorChecker(answer, "t")
+		errorChecker(answer, "t", rounding)
 		
 	if s == "" and v != "" and t != "" and a != "":
 		answer = v * t 
 		answer = answer - (0.5 * a * (t*t))
-		finalresult = finalresult +  (errorChecker(answer, "s"))
+		finalresult = finalresult +  (errorChecker(answer, "s", rounding))
 		
 	if v == "" and s != "" and a != "" and t != "":
 		answer = a * (t*t)
@@ -96,7 +98,7 @@ def suvat(s, u, v, a, t):
 		if t == 0:
 			finalresult = finalresult +  ("Time can not be equal to 0 in this scenario")
 		answer = answer / (t * 2)
-		finalresult = finalresult +  (errorChecker(answer, "v"))
+		finalresult = finalresult +  (errorChecker(answer, "v", rounding))
 			
 	if a == "" and v != "" and t != "" and s != "":
 		answer = v * t 
@@ -106,7 +108,7 @@ def suvat(s, u, v, a, t):
 			finalresult = finalresult +  ("Time can not be equal to 0 in this scenario")
 			
 		answer = answer / (t * t)
-		finalresult = finalresult +  (errorChecker(answer, "a"))
+		finalresult = finalresult +  (errorChecker(answer, "a", rounding))
 		
 	if t == "" and v != "" and a != "" and s != "":
 		answer = v * v 
@@ -117,13 +119,13 @@ def suvat(s, u, v, a, t):
 			finalresult = finalresult +  ("Acceleration can not be equal to 0 in this scenario")
 
 		answer = answer / a  
-		finalresult = finalresult +  (errorChecker(answer, "t"))
+		finalresult = finalresult +  (errorChecker(answer, "t", rounding))
 		
 	if s == "" and u != "" and t != "" and a != "":
 		answer = t * t
 		answer = answer * a * 0.5 
 		answer = (u * t) + answer
-		finalresult = finalresult +  (errorChecker(answer, "s"))
+		finalresult = finalresult +  (errorChecker(answer, "s", rounding))
 		
 	if u == "" and s != "" and a != "" and t != "":
 		answer = t * t 
@@ -133,7 +135,7 @@ def suvat(s, u, v, a, t):
 			finalresult = finalresult +  ("Time can not be equal to 0 in this scenario")
 			
 		answer = answer / (2 * t)
-		finalresult = finalresult +  (errorChecker(answer, "u"))
+		finalresult = finalresult +  (errorChecker(answer, "u", rounding))
 		
 	if a == "" and s != "" and u != "" and t != "":
 		answer = u * t
@@ -143,7 +145,7 @@ def suvat(s, u, v, a, t):
 			finalresult = finalresult +  ("Time can not be equal to 0 in this scenario")
 			
 		answer = answer / (t * t)
-		finalresult = finalresult +  (errorChecker(answer, "a"))
+		finalresult = finalresult +  (errorChecker(answer, "a", rounding))
 	
 	if t == "" and a != "" and s != "" and u != "":
 		uSq = u * u 
@@ -155,12 +157,12 @@ def suvat(s, u, v, a, t):
 			finalresult = finalresult +  ("Acceleration can not be equal to 0 in this scenario")
 			
 		answer = answer / a
-		finalresult = finalresult +  (errorChecker(answer, "t"))
+		finalresult = finalresult +  (errorChecker(answer, "t", rounding))
 		
 	if s == "" and t != "" and u != "" and v != "":
 		answer = t / 2
 		answer = answer * (u + v)
-		finalresult = finalresult +  (errorChecker(answer, "s"))
+		finalresult = finalresult +  (errorChecker(answer, "s", rounding))
 		
 	if u == "" and s != "" and t != "" and v != "":
 		answer = 2 * s
@@ -169,7 +171,7 @@ def suvat(s, u, v, a, t):
 			
 		answer = answer / t
 		answer = answer + v
-		finalresult = finalresult +  (errorChecker(answer, "u"))
+		finalresult = finalresult +  (errorChecker(answer, "u", rounding))
 		
 	if v == "" and s != "" and t != "" and u != "":
 		answer = 2 * s 
@@ -178,12 +180,12 @@ def suvat(s, u, v, a, t):
 			
 		answer = answer / t
 		answer = answer - u 
-		finalresult = finalresult +  (errorChecker(answer, "v"))
+		finalresult = finalresult +  (errorChecker(answer, "v", rounding))
 	
 	if t == "" and s != "" and u != "" and v != "":
 		answer = 2 * s
 		answer = answer / (u + v)
-		finalresult = finalresult +  (errorChecker(answer, "t"))
+		finalresult = finalresult +  (errorChecker(answer, "t", rounding))
 		
 	if s == "" and u != "" and v != "" and a != "":
 		answer = (u * u) + (v * v)
@@ -191,24 +193,24 @@ def suvat(s, u, v, a, t):
 		if answer2 == 0:
 			finalresult = finalresult +  ("Acceleration can not be equal to 0 in this scenario")
 		answer = answer / answer2
-		finalresult = finalresult +  (errorChecker(answer, "s"))
+		finalresult = finalresult +  (errorChecker(answer, "s", rounding))
 		
 	if u == "" and a != "" and s != "" and v != "":
 		answer = (2 * a * s) - (v * v)
 		answer = answer ** (1/2)
-		finalresult = finalresult +  (errorChecker(answer, "u"))
+		finalresult = finalresult +  (errorChecker(answer, "u", rounding))
 		
 	if v == "" and u != "" and a != "" and s != "":
 		answer = (u * u) + (2 + a + s)
 		answer = answer ** (1/2)
-		finalresult = finalresult +  (errorChecker(answer, "v"))
+		finalresult = finalresult +  (errorChecker(answer, "v", rounding))
 		
 	if a == "" and v != "" and u != "" and s != "":
 		answer = (v * v) - (u * u)
 		if s == 0:
 			finalresult = finalresult +  ("Displacement can not be equal to 0 in this scenario")
 		answer = answer / (2 * s)
-		finalresult = finalresult +  (errorChecker(answer, "a"))
+		finalresult = finalresult +  (errorChecker(answer, "a", rounding))
 
 	return finalresult
 
