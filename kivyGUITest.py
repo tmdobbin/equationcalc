@@ -3,82 +3,95 @@ from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
-from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
+from kivy.uix.screenmanager import Screen, ScreenManager, SlideTransition
 from kivy.uix.checkbox import CheckBox
 from kivy.lang import Builder
 import equationBuddy as eb
 
 TRANSITIONSPEED = 0.3
 
-class equationBuddy(App):
+class equationBuddy(App): # Define the main class for the app
     
-    def build(self):
+    def build(self): # Define the build process for the GUI
 
-        sm = ScreenManager()
+        sm = ScreenManager() # Setup the screen manager
 
-        class mainMenuScreen(Screen):
+        class mainMenuScreen(Screen): # Define the class for the main menu
 
-            def __init__(self, **kwargs):
+            def __init__(self, **kwargs): # Make sure these widgets are created every time this class is initialised
 
                 super().__init__(**kwargs)
                 
-                layout = BoxLayout(orientation = "vertical")
-                self.add_widget(layout)
+                mainLayout = BoxLayout(orientation = "vertical") #Setup the main vertical layout
+                self.add_widget(mainLayout) #Add to the mainMenuScreen object
 
-                switchToQuadraticButton = Button(text = "Quadratic Calculator")
-                switchToQuadraticButton.bind(on_press = lambda x: sm.switch_to(quadraticScreen, duration = TRANSITIONSPEED))
-                layout.add_widget(switchToQuadraticButton)
+                switchToQuadraticButton = Button(text = "Quadratic Calculator") # Create a button to switch to Quadratic Calculator.
+                switchToQuadraticButton.bind(on_press = lambda x: sm.switch_to(quadraticScreen, duration = TRANSITIONSPEED, direction = "left")) # lambda x: allows for buttons to run functions while passing variables.
+                mainLayout.add_widget(switchToQuadraticButton) # Add button to the main Layout 
 
                 switchToSuvatButton = Button(text = "Suvat Calculator")
-                switchToSuvatButton.bind(on_press = lambda x: sm.switch_to(suvatScreen, duration = TRANSITIONSPEED))
-                layout.add_widget(switchToSuvatButton)
+                switchToSuvatButton.bind(on_press = lambda x: sm.switch_to(suvatScreen, duration = TRANSITIONSPEED, direction = "left"))
+                mainLayout.add_widget(switchToSuvatButton) #Same stuff
 
-        class quadraticCalculatorScreen(Screen):
+        class quadraticCalculatorScreen(Screen): #Define the screen for the quadratic calculator
             
             def __init__(self, **kwargs):
 
                 super().__init__(**kwargs)
 
-                layout = BoxLayout(orientation = "vertical")
-                self.add_widget(layout)
+                mainLayout = BoxLayout(orientation = "vertical") #Main vertical layout again
+                self.add_widget(mainLayout)
 
-                inputBoxA = TextInput(multiline = False, hint_text = "a", input_type = "number", input_filter = "float")
-                layout.add_widget(inputBoxA)
+                inputBoxA = TextInput(
+                    multiline = False, 
+                    hint_text = "a", 
+                    input_type = "number") #Input boxes
 
-                inputBoxB = TextInput(multiline = False, hint_text = "b", input_type = "number", input_filter = "float")
-                layout.add_widget(inputBoxB)
+                mainLayout.add_widget(inputBoxA) 
 
-                inputBoxC = TextInput(multiline = False, hint_text = "c", input_type = "number", input_filter = "float")
-                layout.add_widget(inputBoxC)
+                inputBoxB = TextInput(
+                    multiline = False, 
+                    hint_text = "b", 
+                    input_type = "number") # input_type = number is to bring up numpad on mobile devices
 
-                roundingLayout = BoxLayout(orientation = "horizontal")
-                layout.add_widget(roundingLayout)
+                mainLayout.add_widget(inputBoxB)
 
-                roundingLabel = Label(text = "Rounding")
+                inputBoxC = TextInput(
+                    multiline = False, 
+                    hint_text = "c", 
+                    input_type = "number") # input_filter is to only allow float type numbers.
+
+                mainLayout.add_widget(inputBoxC)
+
+                roundingLayout = BoxLayout(orientation = "horizontal") # Make a nested horizontal layout for the rounding text and checkbox
+                mainLayout.add_widget(roundingLayout)
+
+                roundingLabel = Label(text = "Rounding") # Add the text label on the left
                 roundingLayout.add_widget(roundingLabel)
 
-                roundingCheckbox = CheckBox(active = False)
+                roundingCheckbox = CheckBox(active = False) # Stack the checkbox to the right with a default state of off.
                 roundingLayout.add_widget(roundingCheckbox)
 
-                calculationLayout = BoxLayout(orientation = "horizontal")
-                layout.add_widget(calculationLayout)
+                calculationLayout = BoxLayout(orientation = "horizontal") #Another nested layout for calculation stuff
+                mainLayout.add_widget(calculationLayout)
 
                 calculateButton = Button(text = "Calculate for x")
-                calculateButton.bind(on_press = lambda x: (print(f"tmp debug solve for x {inputBoxA.text=} {inputBoxB.text=} {inputBoxC.text=}"), getRoundingState(roundingCheckbox)))
+                calculateButton.bind(on_press = lambda x: (print(f"tmp debug solve for x {inputBoxA.text=} {inputBoxB.text=} {inputBoxC.text=}"), getRoundingState()))
                 calculationLayout.add_widget(calculateButton)
 
-                answerBox = Label(text = "Answer goes here (DEBUG)")
+                answerBox = Label(text = "Answer goes here (DEBUG)") # Default/placeholder text before answer is calculated
                 calculationLayout.add_widget(answerBox)
 
                 backButton = Button(text = "Back to main menu")
                 backButton.bind(on_press = lambda x: sm.switch_to(mainScreen, transition=SlideTransition(direction = "right", duration = TRANSITIONSPEED)))
-                layout.add_widget(backButton)
+                mainLayout.add_widget(backButton) # Back button switches back to the main screen, reversing the transition.
 
                 
-                def getRoundingState(checkbox):
+                def getRoundingState(): # Function that returns the state of the roundingCheckbox.
                     state = roundingCheckbox.active
                     print("Rounding checkbox is active:", state)
                     answerBox.text = str(state) + " - DEBUG, roundingCheckbox.active state"
+                    return state
 
 
         class suvatCalculatorScreen(Screen):
@@ -87,26 +100,45 @@ class equationBuddy(App):
 
                 super().__init__(**kwargs)
 
-                layout= BoxLayout(orientation = "vertical")
-                self.add_widget(layout)
+                mainLayout = BoxLayout(orientation = "vertical") #Same stuff as before
+                self.add_widget(mainLayout)
 
-                inputBoxS = TextInput(multiline = False, hint_text = "s", input_type = "number", input_filter = "float")
-                layout.add_widget(inputBoxS)
+                inputBoxS = TextInput(
+                    multiline = False, 
+                    hint_text = "s", 
+                    input_type = "number")
+                mainLayout.add_widget(inputBoxS)
 
-                inputBoxU = TextInput(multiline = False, hint_text = "u", input_type = "number", input_filter = "float")
-                layout.add_widget(inputBoxU)
+                inputBoxU = TextInput(
+                    multiline = False, 
+                    hint_text = "u", 
+                    input_type = "number")
 
-                inputBoxV = TextInput(multiline = False, hint_text = "v", input_type = "number", input_filter = "float")
-                layout.add_widget(inputBoxV)
+                mainLayout.add_widget(inputBoxU)
 
-                inputBoxA = TextInput(multiline = False, hint_text = "a", input_type = "number", input_filter = "float")
-                layout.add_widget(inputBoxA)
+                inputBoxV = TextInput(
+                    multiline = False, 
+                    hint_text = "v", 
+                    input_type = "number")
 
-                inputBoxT = TextInput(multiline = False, hint_text = "t", input_type = "number", input_filter = "float")
-                layout.add_widget(inputBoxT)
+                mainLayout.add_widget(inputBoxV)
+
+                inputBoxA = TextInput(
+                    multiline = False, 
+                    hint_text = "a", 
+                    input_type = "number")
+
+                mainLayout.add_widget(inputBoxA)
+
+                inputBoxT = TextInput(
+                    multiline = False, 
+                    hint_text = "t", 
+                    input_type = "number")
+                    
+                mainLayout.add_widget(inputBoxT)
 
                 roundingLayout = BoxLayout(orientation = "horizontal")
-                layout.add_widget(roundingLayout)
+                mainLayout.add_widget(roundingLayout)
 
                 roundingLabel = Label(text = "Rounding")
                 roundingLayout.add_widget(roundingLabel)
@@ -115,7 +147,7 @@ class equationBuddy(App):
                 roundingLayout.add_widget(roundingCheckbox)
 
                 calculateLayout = BoxLayout(orientation = "horizontal")
-                layout.add_widget(calculateLayout)
+                mainLayout.add_widget(calculateLayout)
 
                 calculateButton = Button(text = "Calculate missing values")
                 calculateButton.bind(on_press = lambda x: suvat(inputBoxS.text, inputBoxU.text, inputBoxV.text, inputBoxA.text, inputBoxT.text, roundingCheckbox.active))
@@ -126,17 +158,17 @@ class equationBuddy(App):
 
                 backButton = Button(text = "Back to main menu")
                 backButton.bind(on_press = lambda x: sm.switch_to(mainScreen, transition=SlideTransition(direction = "right", duration = TRANSITIONSPEED)))
-                layout.add_widget(backButton)
+                mainLayout.add_widget(backButton)
 
                 def suvat(s, u, v, a, t, rounding): #tmp before they are imported from main file
 
                     answerBox.text = str(eb.suvat(s, u, v, a, t, rounding))
 
-        mainScreen = mainMenuScreen(name = "main")
+        mainScreen = mainMenuScreen(name = "main") # Define the screens with names
         quadraticScreen = quadraticCalculatorScreen(name = "quadratic")
         suvatScreen = suvatCalculatorScreen(name = "suvat")
 
-        sm.add_widget(mainScreen)
+        sm.add_widget(mainScreen) # Add the screens to the main screen manager
         sm.add_widget(quadraticScreen)
         sm.add_widget(suvatScreen)
         
