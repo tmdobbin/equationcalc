@@ -5,7 +5,7 @@ from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang import Builder
-import equationBuddyEdited as eb
+import equationBuddy as eb
 
 class equationBuddy(App):
     
