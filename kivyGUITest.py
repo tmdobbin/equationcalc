@@ -80,7 +80,7 @@ class equationBuddy(App): # Define the main class for the app
                 mainLayout.add_widget(calculationLayout)
 
                 calculateButton = Button(text = "Calculate for x")
-                calculateButton.bind(on_press = lambda x: (print(f"tmp debug solve for x {inputBoxA.text=} {inputBoxB.text=} {inputBoxC.text=}"), getRoundingState()))
+                calculateButton.bind(on_press = lambda x: quadratic(inputBoxA.text, inputBoxB.text, inputBoxC.text, roundingCheckbox.active))
                 calculationLayout.add_widget(calculateButton)
 
                 answerBox = Label(text = "Answer goes here (DEBUG)") # Default/placeholder text before answer is calculated
@@ -91,11 +91,9 @@ class equationBuddy(App): # Define the main class for the app
                 mainLayout.add_widget(backButton) # Back button switches back to the main screen, reversing the transition.
 
                 
-                def getRoundingState(): # Function that returns the state of the roundingCheckbox.
+                def quadratic(a, b, c, rounding): # Function that returns the state of the roundingCheckbox.
 
-                    print("Rounding checkbox is active:", roundingCheckbox.active)
-                    answerBox.text = str(roundingCheckbox.active) + " - DEBUG, roundingCheckbox.active state"
-                    return roundingCheckbox.active
+                    answerBox.text = eb.quadraticFormula(a, b, c, rounding)
 
 
         class suvatCalculatorScreen(Screen):

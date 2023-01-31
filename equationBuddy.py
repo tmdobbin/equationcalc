@@ -214,42 +214,51 @@ def suvat(s, u, v, a, t, rounding):
 
 	return finalresult
 
-def quadraticFormula():
+def quadraticFormula(coA, coB, coC, rounding):
+
+	finalresult = ""
 	
-	def QuadraticErrorChecker(X1, X2):
+	def QuadraticErrorChecker(X1, X2, rounding):
+
+		finalresult = ""
+
 		imaginaryCounter = 0
 		if isinstance(X1, complex):
-			print("The first value is an imaginary number")
+			# print("The first value is an imaginary number")
 			imaginaryCounter = imaginaryCounter + 1
-		elif len(str(X1)) > 4:
+		if rounding:
 			X1 = round(X1, 3)
-			print ("x =", X1)
+			finalresult = f"x={str(X1)}"
+			# print ("x =", X1)
 		else:
-			print("x =", X1)
+			finalresult = f"x={str(X1)}"
 			
 		if isinstance(X2, complex):
-			print("The second value is an imaginary number")
+			# print("The second value is an imaginary number")
 			imaginaryCounter = imaginaryCounter + 1
 		elif X1 == X2:
-			print("This equation has 1 real root")
-		elif len(str(X2)) > 4:
+			return ("This equation has no real roots.")
+			# print("This equation has 1 real root")
+		if rounding:
 			X2 = round(X2, 3)
-			print ("x =", X2)
+			finalresult = f"{finalresult}, x={str(X2)}"
 		else:
-			print("x =", X2)
+			finalresult = f"{finalresult}, x={str(X2)}"
 			
 		if imaginaryCounter == 2:
-			print("This equation has no real roots")
+			return ("This equation has no real roots.")
 
-	print("{:=^70}".format("Quadratic Formula"))
-	print()
-	coA = float(input("Coefficient A = "))
-	coB = float(input("Coefficient B = "))
-	coC = float(input("Coefficeint C = "))
-	print()
+		return finalresult
+
+	# print("{:=^70}".format("Quadratic Formula"))
+	# print()
+	coA = float(coA)
+	coB = float(coB)
+	coC = float(coC)
+	# print()
 	
 	if coA == 0:
-		print("This function requires a coefficient for A")
+		return ("This function requires a coefficient for A")
 	if coB > 0: 
 		conCoB = -abs(coB)
 	if coA < 0:
@@ -263,7 +272,10 @@ def quadraticFormula():
 	answer1 = answer1 / (2 * coA)
 	answer2 = conCoB - answer
 	answer2 = answer2 / (2 * coA)
-	QuadraticErrorChecker(answer1, answer2)
+	print(answer1, answer2)
+	finalresult = QuadraticErrorChecker(answer1, answer2, rounding)
+	print(f"{finalresult=} AFTER RETURN")
+	return finalresult
 	
 def physicsValues():
 	
