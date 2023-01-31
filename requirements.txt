@@ -2,3 +2,4 @@ kivy
 buildozer
 cpython
 kivy-ios
+regex
