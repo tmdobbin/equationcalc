@@ -7,7 +7,7 @@ from kivy.uix.screenmanager import Screen, ScreenManager, SlideTransition
 from kivy.uix.checkbox import CheckBox
 from kivy.lang import Builder
 import equationBuddy as eb
-import re
+import kivy
 
 TRANSITIONSPEED = 0.3
 
@@ -40,41 +40,30 @@ class equationBuddy(App): # Define the main class for the app
 
                 super().__init__(**kwargs)
 
-                class FloatInput(TextInput):
-
-                    pat = re.compile('[^0-9]')
-                    def insert_text(self, substring, from_undo=False):
-                        pat = self.pat
-                        if '.' in self.text:
-                            s = re.sub(pat, '', substring)
-                        else:
-                            s = '.'.join(
-                                re.sub(pat, '', s)
-                                for s in substring.split('.', 1)
-                            )
-                        return super().insert_text(s, from_undo=from_undo)
-
                 mainLayout = BoxLayout(orientation = "vertical") #Main vertical layout again
                 self.add_widget(mainLayout)
 
-                inputBoxA = FloatInput(
+                inputBoxA = TextInput(
                     multiline = False, 
                     hint_text = "a", 
-                    input_type = "number") #Input boxes
+                    input_type = "number",
+                    input_filter = "float") #Input boxes
 
                 mainLayout.add_widget(inputBoxA) 
 
-                inputBoxB = FloatInput(
+                inputBoxB = TextInput(
                     multiline = False, 
                     hint_text = "b", 
-                    input_type = "number") # input_type = number is to bring up numpad on mobile devices
+                    input_type = "number",
+                    input_filter = "float") # input_type = number is to bring up numpad on mobile devices
 
                 mainLayout.add_widget(inputBoxB)
 
-                inputBoxC = FloatInput(
+                inputBoxC = TextInput(
                     multiline = False, 
                     hint_text = "c", 
-                    input_type = "number") # input_filter is to only allow float type numbers.
+                    input_type = "number",
+                    input_filter = "float") # input_filter is to only allow float type numbers.
 
                 mainLayout.add_widget(inputBoxC)
 
@@ -103,10 +92,10 @@ class equationBuddy(App): # Define the main class for the app
 
                 
                 def getRoundingState(): # Function that returns the state of the roundingCheckbox.
-                    state = roundingCheckbox.active
-                    print("Rounding checkbox is active:", state)
-                    answerBox.text = str(state) + " - DEBUG, roundingCheckbox.active state"
-                    return state
+
+                    print("Rounding checkbox is active:", roundingCheckbox.active)
+                    answerBox.text = str(roundingCheckbox.active) + " - DEBUG, roundingCheckbox.active state"
+                    return roundingCheckbox.active
 
 
         class suvatCalculatorScreen(Screen):
@@ -115,54 +104,46 @@ class equationBuddy(App): # Define the main class for the app
 
                 super().__init__(**kwargs)
 
-                class FloatInput(TextInput):
-
-                    pat = re.compile('[^0-9]')
-                    def insert_text(self, substring, from_undo=False):
-                        pat = self.pat
-                        if '.' in self.text:
-                            s = re.sub(pat, '', substring)
-                        else:
-                            s = '.'.join(
-                                re.sub(pat, '', s)
-                                for s in substring.split('.', 1)
-                            )
-                        return super().insert_text(s, from_undo=from_undo) #This snippet was taken from the Kivy docs
-
                 mainLayout = BoxLayout(orientation = "vertical") #Same stuff as before
                 self.add_widget(mainLayout)
 
-                inputBoxS = FloatInput(
+                inputBoxS = TextInput(
                     multiline = False, 
                     hint_text = "s", 
-                    input_type = "number")
+                    input_type = "number",
+                    input_filter = "float")
+
                 mainLayout.add_widget(inputBoxS)
 
-                inputBoxU = FloatInput(
+                inputBoxU = TextInput(
                     multiline = False, 
                     hint_text = "u", 
-                    input_type = "number")
+                    input_type = "number",
+                    input_filter = "float")
 
                 mainLayout.add_widget(inputBoxU)
 
-                inputBoxV = FloatInput(
+                inputBoxV = TextInput(
                     multiline = False, 
                     hint_text = "v", 
-                    input_type = "number")
+                    input_type = "number",
+                    input_filter = "float")
 
                 mainLayout.add_widget(inputBoxV)
 
-                inputBoxA = FloatInput(
+                inputBoxA = TextInput(
                     multiline = False, 
                     hint_text = "a", 
-                    input_type = "number")
+                    input_type = "number",
+                    input_filter = "float")
 
                 mainLayout.add_widget(inputBoxA)
 
-                inputBoxT = FloatInput(
+                inputBoxT = TextInput(
                     multiline = False, 
                     hint_text = "t", 
-                    input_type = "number")
+                    input_type = "number",
+                    input_filter = "float")
 
                 mainLayout.add_widget(inputBoxT)
 
