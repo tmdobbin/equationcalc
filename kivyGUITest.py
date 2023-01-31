@@ -122,9 +122,9 @@ class equationBuddy(App): # Define the main class for the app
                 mainLayout = BoxLayout(orientation = "vertical") #Same stuff as before
                 self.add_widget(mainLayout)
 
-                inputBoxS = TextInput(
+                inputBoxS = FloatInput(
                     multiline = False, 
-                    hint_text = "s", 
+                    hint_text = "s - USE THIS TO TEST DECIMALS (DEBUG)", 
                     input_type = "number",
                     input_filter = "float")
 
