@@ -8,7 +8,7 @@ from kivy.uix.checkbox import CheckBox
 from kivy.lang import Builder
 import equationBuddy as eb
 import kivy
-
+import regex as re
 TRANSITIONSPEED = 0.3
 
 class equationBuddy(App): # Define the main class for the app
@@ -16,6 +16,23 @@ class equationBuddy(App): # Define the main class for the app
     def build(self): # Define the build process for the GUI
 
         sm = ScreenManager() # Setup the screen manager
+
+        class FloatInput(TextInput):
+
+            pat = re.compile('[^0-9]')
+            def insert_text(self, substring, from_undo=False):
+
+                pat = self.pat
+
+                if '.' in self.text:
+                    s = re.sub(pat, '', substring)
+
+
+                else:
+                    s = '.'.join([re.sub(pat, '', s) for s in substring.split('.', 1)])
+
+
+                return super(FloatInput, self).insert_text(s, from_undo=from_undo)
 
         class mainMenuScreen(Screen): # Define the class for the main menu
 
@@ -43,9 +60,9 @@ class equationBuddy(App): # Define the main class for the app
                 mainLayout = BoxLayout(orientation = "vertical") #Main vertical layout again
                 self.add_widget(mainLayout)
 
-                inputBoxA = TextInput(
+                inputBoxA = FloatInput(
                     multiline = False, 
-                    hint_text = "a", 
+                    hint_text = "a - USE THIS BOX TO TEST DECIMALS (DEBUG)", 
                     input_type = "number",
                     input_filter = "float") #Input boxes
 

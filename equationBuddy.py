@@ -226,12 +226,6 @@ def quadraticFormula(coA, coB, coC, rounding):
 		if isinstance(X1, complex):
 			# print("The first value is an imaginary number")
 			imaginaryCounter = imaginaryCounter + 1
-		if rounding:
-			X1 = round(X1, 3)
-			finalresult = f"x={str(X1)}"
-			# print ("x =", X1)
-		else:
-			finalresult = f"x={str(X1)}"
 			
 		if isinstance(X2, complex):
 			# print("The second value is an imaginary number")
@@ -239,22 +233,41 @@ def quadraticFormula(coA, coB, coC, rounding):
 		elif X1 == X2:
 			return ("This equation has no real roots.")
 			# print("This equation has 1 real root")
+
+		if imaginaryCounter == 2:
+			return ("This equation has no real roots.")
+
+		if rounding:
+			X1 = round(X1, 3)
+			finalresult = f"x={str(X1)}"
+			# print ("x =", X1)
+		else:
+			finalresult = f"x={str(X1)}"
+
 		if rounding:
 			X2 = round(X2, 3)
 			finalresult = f"{finalresult}, x={str(X2)}"
 		else:
 			finalresult = f"{finalresult}, x={str(X2)}"
-			
-		if imaginaryCounter == 2:
-			return ("This equation has no real roots.")
 
 		return finalresult
 
 	# print("{:=^70}".format("Quadratic Formula"))
 	# print()
-	coA = float(coA)
-	coB = float(coB)
-	coC = float(coC)
+	if coA != "":
+		coA = float(coA)
+	else:
+		return "Missing values"
+	
+	if coB != "":
+		coB = float(coB)
+	else:
+		return "Missing values"
+
+	if coC != "":
+		coC = float(coC)
+	else:
+		return "Missing values"
 	# print()
 	
 	if coA == 0:
