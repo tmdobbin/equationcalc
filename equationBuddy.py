@@ -247,9 +247,9 @@ def quadraticFormula(coA, coB, coC, rounding):
 
 		if rounding:
 			X2 = round(X2, 3)
-			finalresult = f"{finalresult}, x={str(X2)}"
+			finalresult = f"{finalresult}\nx={str(X2)}"
 		else:
-			finalresult = f"{finalresult}, x={str(X2)}"
+			finalresult = f"{finalresult}\nx={str(X2)}"
 
 		return finalresult
 

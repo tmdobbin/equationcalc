@@ -27,13 +27,105 @@ class equationBuddy(App): # Define the main class for the app
                 mainLayout = BoxLayout(orientation = "vertical") #Setup the main vertical layout
                 self.add_widget(mainLayout) #Add to the mainMenuScreen object
 
+                switchToQuadraticButton = Button(text = "Maths Calculators") # Create a button to switch to Quadratic Calculator.
+                switchToQuadraticButton.bind(on_press = lambda x: sm.switch_to(mathsScreen, duration = TRANSITIONSPEED, direction = "left")) # lambda x: allows for buttons to run functions while passing variables.
+                mainLayout.add_widget(switchToQuadraticButton) # Add button to the main Layout 
+
+                switchToSuvatButton = Button(text = "Physics Calculators")
+                switchToSuvatButton.bind(on_press = lambda x: sm.switch_to(physicsScreen, duration = TRANSITIONSPEED, direction = "left"))
+                mainLayout.add_widget(switchToSuvatButton) #Same stuff
+
+        class mathsSelectScreen(Screen):
+
+            def __init__(self, **kwargs):
+
+                super().__init__(**kwargs)
+
+                mainLayout = BoxLayout(orientation = "vertical")
+                self.add_widget(mainLayout)
+
+                firstRow = BoxLayout(orientation = "horizontal")
+                mainLayout.add_widget(firstRow)
+
                 switchToQuadraticButton = Button(text = "Quadratic Calculator") # Create a button to switch to Quadratic Calculator.
                 switchToQuadraticButton.bind(on_press = lambda x: sm.switch_to(quadraticScreen, duration = TRANSITIONSPEED, direction = "left")) # lambda x: allows for buttons to run functions while passing variables.
-                mainLayout.add_widget(switchToQuadraticButton) # Add button to the main Layout 
+                firstRow.add_widget(switchToQuadraticButton) # Add button to the main Layout 
 
                 switchToSuvatButton = Button(text = "Suvat Calculator")
                 switchToSuvatButton.bind(on_press = lambda x: sm.switch_to(suvatScreen, duration = TRANSITIONSPEED, direction = "left"))
-                mainLayout.add_widget(switchToSuvatButton) #Same stuff
+                firstRow.add_widget(switchToSuvatButton) #Same stuff
+
+                secondRow = BoxLayout(orientation = "horizontal")
+                mainLayout.add_widget(secondRow)
+
+                switchToAreaButton = Button(text = "Area Calculators")
+                switchToAreaButton.bind(on_press = lambda x: sm.switch_to(areaSelScreen, duration = TRANSITIONSPEED, direction = "left"))
+                secondRow.add_widget(switchToAreaButton)
+
+                switchToTmpScreenButton = Button(text = "TMP MENU BTN")
+                switchToTmpScreenButton.bind(on_press = lambda x: print("DEBUG - TMP BUTTON PRESSED"))
+                secondRow.add_widget(switchToTmpScreenButton)
+
+                backButton = Button(text = "Back")
+                backButton.bind(on_press = lambda x: sm.switch_to(mainScreen, transition=SlideTransition(direction = "right", duration = TRANSITIONSPEED)))
+                mainLayout.add_widget(backButton)
+
+        class areaSelectScreen(Screen):
+
+            def __init__(self, **kwargs):
+
+                super().__init__(**kwargs)
+
+                mainLayout = BoxLayout(orientation = "vertical")
+                self.add_widget(mainLayout)
+
+                firstRow = BoxLayout(orientation = "horizontal")
+                mainLayout.add_widget(firstRow)
+
+                switchToQuadraticButton = Button(text = "Square") # Create a button to switch to Quadratic Calculator.
+                switchToQuadraticButton.bind(on_press = lambda x: print("Square button pressed")) # lambda x: allows for buttons to run functions while passing variables.
+                firstRow.add_widget(switchToQuadraticButton) # Add button to the main Layout 
+
+                switchToSuvatButton = Button(text = "Triangle")
+                switchToSuvatButton.bind(on_press = lambda x: print("Triangle button pressed"))
+                firstRow.add_widget(switchToSuvatButton) #Same stuff
+
+                secondRow = BoxLayout(orientation = "horizontal")
+                mainLayout.add_widget(secondRow)
+
+                switchToAreaButton = Button(text = "TMP BTN")
+                switchToAreaButton.bind(on_press = lambda x: print("DEBUG - TMP BUTTON PRESSED"))
+                secondRow.add_widget(switchToAreaButton)
+
+                switchToTmpScreenButton = Button(text = "TMP BTN")
+                switchToTmpScreenButton.bind(on_press = lambda x: print("DEBUG - TMP BUTTON PRESSED"))
+                secondRow.add_widget(switchToTmpScreenButton)
+
+                backButton = Button(text = "Back")
+                backButton.bind(on_press = lambda x: sm.switch_to(mathsScreen, transition=SlideTransition(direction = "right", duration = TRANSITIONSPEED)))
+                mainLayout.add_widget(backButton)
+
+
+        class physicsSelectScreen(Screen):
+
+            def __init__(self, **kwargs):
+
+                super().__init__(**kwargs)
+
+                mainLayout = BoxLayout(orientation = "vertical")
+                self.add_widget(mainLayout)
+
+                switchToAreaButton = Button(text = "TMP BTN")
+                switchToAreaButton.bind(on_press = lambda x: print("DEBUG - Physics button 1 BUTTON PRESSED"))
+                mainLayout.add_widget(switchToAreaButton)
+
+                switchToTmpScreenButton = Button(text = "TMP BTN")
+                switchToTmpScreenButton.bind(on_press = lambda x: print("DEBUG - Physics button 2 BUTTON PRESSED"))
+                mainLayout.add_widget(switchToTmpScreenButton)
+
+                backButton = Button(text = "Back")
+                backButton.bind(on_press = lambda x: sm.switch_to(mainScreen, transition=SlideTransition(direction = "right", duration = TRANSITIONSPEED)))
+                mainLayout.add_widget(backButton)
 
         class quadraticCalculatorScreen(Screen): #Define the screen for the quadratic calculator
             
@@ -87,8 +179,8 @@ class equationBuddy(App): # Define the main class for the app
                 answerBox = Label(text = "Answer goes here (DEBUG)") # Default/placeholder text before answer is calculated
                 calculationLayout.add_widget(answerBox)
 
-                backButton = Button(text = "Back to main menu")
-                backButton.bind(on_press = lambda x: sm.switch_to(mainScreen, transition=SlideTransition(direction = "right", duration = TRANSITIONSPEED)))
+                backButton = Button(text = "Back")
+                backButton.bind(on_press = lambda x: sm.switch_to(mathsScreen, transition=SlideTransition(direction = "right", duration = TRANSITIONSPEED)))
                 mainLayout.add_widget(backButton) # Back button switches back to the main screen, reversing the transition.
 
                 
@@ -165,8 +257,8 @@ class equationBuddy(App): # Define the main class for the app
                 answerBox = Label(text = "Answer goes here (DEBUG)")
                 calculateLayout.add_widget(answerBox)
 
-                backButton = Button(text = "Back to main menu")
-                backButton.bind(on_press = lambda x: sm.switch_to(mainScreen, transition=SlideTransition(direction = "right", duration = TRANSITIONSPEED)))
+                backButton = Button(text = "Back")
+                backButton.bind(on_press = lambda x: sm.switch_to(mathsScreen, transition=SlideTransition(direction = "right", duration = TRANSITIONSPEED)))
                 mainLayout.add_widget(backButton)
 
                 def suvat(s, u, v, a, t, rounding): #tmp before they are imported from main file
@@ -174,10 +266,16 @@ class equationBuddy(App): # Define the main class for the app
                     answerBox.text = str(eb.suvat(s, u, v, a, t, rounding))
 
         mainScreen = mainMenuScreen(name = "main") # Define the screens with names
+        mathsScreen = mathsSelectScreen(name = "maths")
+        physicsScreen = physicsSelectScreen(name = "physics")
+        areaSelScreen = areaSelectScreen(name = "areasel")
         quadraticScreen = quadraticCalculatorScreen(name = "quadratic")
         suvatScreen = suvatCalculatorScreen(name = "suvat")
 
         sm.add_widget(mainScreen) # Add the screens to the main screen manager
+        sm.add_widget(mathsScreen)
+        sm.add_widget(physicsScreen)
+        sm.add_widget(areaSelScreen)
         sm.add_widget(quadraticScreen)
         sm.add_widget(suvatScreen)
         
