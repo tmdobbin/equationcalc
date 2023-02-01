@@ -232,7 +232,7 @@ def quadraticFormula(coA, coB, coC, rounding):
 			# print("The second value is an imaginary number")
 			imaginaryCounter = imaginaryCounter + 1
 		elif X1 == X2:
-			return ("This equation has no real roots.")
+			return f"x= {X1}"
 			# print("This equation has 1 real root")
 
 		if imaginaryCounter == 2:
@@ -240,16 +240,16 @@ def quadraticFormula(coA, coB, coC, rounding):
 
 		if rounding:
 			X1 = round(X1, 3)
-			finalresult = f"x={str(X1)}"
+			finalresult = f"x= {str(X1)}"
 			# print ("x =", X1)
 		else:
-			finalresult = f"x={str(X1)}"
+			finalresult = f"x= {str(X1)}"
 
 		if rounding:
 			X2 = round(X2, 3)
-			finalresult = f"{finalresult}\nx={str(X2)}"
+			finalresult = f"{finalresult}\nx= {str(X2)}"
 		else:
-			finalresult = f"{finalresult}\nx={str(X2)}"
+			finalresult = f"{finalresult}\nx= {str(X2)}"
 
 		return finalresult
 
