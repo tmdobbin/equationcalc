@@ -9,6 +9,7 @@ from kivy.lang import Builder
 import equationBuddy as eb
 import kivy
 import regex as re
+
 TRANSITIONSPEED = 0.3
 
 class equationBuddy(App): # Define the main class for the app
@@ -16,23 +17,6 @@ class equationBuddy(App): # Define the main class for the app
     def build(self): # Define the build process for the GUI
 
         sm = ScreenManager() # Setup the screen manager
-
-        class FloatInput(TextInput):
-
-            pat = re.compile('[^0-9]')
-            def insert_text(self, substring, from_undo=False):
-
-                pat = self.pat
-
-                if '.' in self.text:
-                    s = re.sub(pat, '', substring)
-
-
-                else:
-                    s = '.'.join([re.sub(pat, '', s) for s in substring.split('.', 1)])
-
-
-                return super(FloatInput, self).insert_text(s, from_undo=from_undo)
 
         class mainMenuScreen(Screen): # Define the class for the main menu
 
@@ -60,10 +44,10 @@ class equationBuddy(App): # Define the main class for the app
                 mainLayout = BoxLayout(orientation = "vertical") #Main vertical layout again
                 self.add_widget(mainLayout)
 
-                inputBoxA = FloatInput(
+                inputBoxA = TextInput(
                     multiline = False, 
-                    hint_text = "a - USE THIS BOX TO TEST DECIMALS (DEBUG)", 
-                    input_type = "number",
+                    hint_text = "a", 
+                    input_type = "text",
                     input_filter = "float") #Input boxes
 
                 mainLayout.add_widget(inputBoxA) 
@@ -71,7 +55,7 @@ class equationBuddy(App): # Define the main class for the app
                 inputBoxB = TextInput(
                     multiline = False, 
                     hint_text = "b", 
-                    input_type = "number",
+                    input_type = "text",
                     input_filter = "float") # input_type = number is to bring up numpad on mobile devices
 
                 mainLayout.add_widget(inputBoxB)
@@ -79,7 +63,7 @@ class equationBuddy(App): # Define the main class for the app
                 inputBoxC = TextInput(
                     multiline = False, 
                     hint_text = "c", 
-                    input_type = "number",
+                    input_type = "text",
                     input_filter = "float") # input_filter is to only allow float type numbers.
 
                 mainLayout.add_widget(inputBoxC)
@@ -122,10 +106,10 @@ class equationBuddy(App): # Define the main class for the app
                 mainLayout = BoxLayout(orientation = "vertical") #Same stuff as before
                 self.add_widget(mainLayout)
 
-                inputBoxS = FloatInput(
+                inputBoxS = TextInput(
                     multiline = False, 
-                    hint_text = "s - USE THIS TO TEST DECIMALS (DEBUG)", 
-                    input_type = "number",
+                    hint_text = "s", 
+                    input_type = "text",
                     input_filter = "float")
 
                 mainLayout.add_widget(inputBoxS)
@@ -133,7 +117,7 @@ class equationBuddy(App): # Define the main class for the app
                 inputBoxU = TextInput(
                     multiline = False, 
                     hint_text = "u", 
-                    input_type = "number",
+                    input_type = "text",
                     input_filter = "float")
 
                 mainLayout.add_widget(inputBoxU)
@@ -141,7 +125,7 @@ class equationBuddy(App): # Define the main class for the app
                 inputBoxV = TextInput(
                     multiline = False, 
                     hint_text = "v", 
-                    input_type = "number",
+                    input_type = "text",
                     input_filter = "float")
 
                 mainLayout.add_widget(inputBoxV)
@@ -149,7 +133,7 @@ class equationBuddy(App): # Define the main class for the app
                 inputBoxA = TextInput(
                     multiline = False, 
                     hint_text = "a", 
-                    input_type = "number",
+                    input_type = "text",
                     input_filter = "float")
 
                 mainLayout.add_widget(inputBoxA)
@@ -157,7 +141,7 @@ class equationBuddy(App): # Define the main class for the app
                 inputBoxT = TextInput(
                     multiline = False, 
                     hint_text = "t", 
-                    input_type = "number",
+                    input_type = "text",
                     input_filter = "float")
 
                 mainLayout.add_widget(inputBoxT)
