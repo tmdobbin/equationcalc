@@ -621,5 +621,7 @@ def areaMenu():
 
 def exit():
     print("Thanks for using Equation Buddy, Goodbye!")
-    
-runMenu()
+
+if __name__ == "__main__":    
+	runMenu()
+
