@@ -82,9 +82,24 @@ class equationBuddy(App): # Define the main class for the app
                 answerLabel = Label(text = "Tmp debug text")
                 mainLayout.add_widget(answerLabel)
 
+                rowInputBox = TextInput(
+                    multiline = False, 
+                    hint_text = "Row", 
+                    input_type = "text",
+                    input_filter = "float")
+
+                mainLayout.add_widget(rowInputBox)
+
+                calculateButton = Button(text = "Calculate")
+                calculateButton.bind(on_press = lambda x: pascalsLine(int(rowInputBox.text)))
+                mainLayout.add_widget(calculateButton)
+
                 backButton = Button(text = "Back")
                 backButton.bind(on_press = lambda x: sm.switch_to(mathsScreen, direction = "right", duration = TRANSITIONSPEED))
                 mainLayout.add_widget(backButton)
+
+                def pascalsLine(row):
+                    answerLabel.text = str(eb.pascalsLine(row))
 
         class areaSelectScreen(Screen):
 
