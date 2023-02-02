@@ -62,12 +62,28 @@ class equationBuddy(App): # Define the main class for the app
                 switchToAreaButton.bind(on_press = lambda x: sm.switch_to(areaSelScreen, duration = TRANSITIONSPEED, direction = "left"))
                 secondRow.add_widget(switchToAreaButton)
 
-                switchToTmpScreenButton = Button(text = "TMP MENU BTN")
-                switchToTmpScreenButton.bind(on_press = lambda x: print("DEBUG - TMP BUTTON PRESSED"))
-                secondRow.add_widget(switchToTmpScreenButton)
+                switchToPascalsLineButton = Button(text = "Pascal's Line")
+                switchToPascalsLineButton.bind(on_press = lambda x: sm.switch_to(pascalsLineScreen, duration = TRANSITIONSPEED, direction = "left"))
+                secondRow.add_widget(switchToPascalsLineButton)
 
                 backButton = Button(text = "Back")
-                backButton.bind(on_press = lambda x: sm.switch_to(mainScreen, transition=SlideTransition(direction = "right", duration = TRANSITIONSPEED)))
+                backButton.bind(on_press = lambda x: sm.switch_to(mainScreen, direction = "right", duration = TRANSITIONSPEED))
+                mainLayout.add_widget(backButton)
+                
+        class pascalsLineCalculatorScreen(Screen):
+
+            def __init__(self, **kwargs):
+
+                super().__init__(**kwargs)
+
+                mainLayout = BoxLayout(orientation = "vertical")
+                self.add_widget(mainLayout)
+
+                answerLabel = Label(text = "Tmp debug text")
+                mainLayout.add_widget(answerLabel)
+
+                backButton = Button(text = "Back")
+                backButton.bind(on_press = lambda x: sm.switch_to(mathsScreen, direction = "right", duration = TRANSITIONSPEED))
                 mainLayout.add_widget(backButton)
 
         class areaSelectScreen(Screen):
@@ -102,7 +118,7 @@ class equationBuddy(App): # Define the main class for the app
                 secondRow.add_widget(switchToTmpScreenButton)
 
                 backButton = Button(text = "Back")
-                backButton.bind(on_press = lambda x: sm.switch_to(mathsScreen, transition=SlideTransition(direction = "right", duration = TRANSITIONSPEED)))
+                backButton.bind(on_press = lambda x: sm.switch_to(mathsScreen, direction = "right", duration = TRANSITIONSPEED))
                 mainLayout.add_widget(backButton)
 
 
@@ -124,7 +140,7 @@ class equationBuddy(App): # Define the main class for the app
                 mainLayout.add_widget(switchToTmpScreenButton)
 
                 backButton = Button(text = "Back")
-                backButton.bind(on_press = lambda x: sm.switch_to(mainScreen, transition=SlideTransition(direction = "right", duration = TRANSITIONSPEED)))
+                backButton.bind(on_press = lambda x: sm.switch_to(mainScreen, direction = "right", duration = TRANSITIONSPEED))
                 mainLayout.add_widget(backButton)
 
         class quadraticCalculatorScreen(Screen): #Define the screen for the quadratic calculator
@@ -176,11 +192,11 @@ class equationBuddy(App): # Define the main class for the app
                 calculateButton.bind(on_press = lambda x: quadratic(inputBoxA.text, inputBoxB.text, inputBoxC.text, roundingCheckbox.active))
                 calculationLayout.add_widget(calculateButton)
 
-                answerBox = Label(text = "Answer goes here (DEBUG)") # Default/placeholder text before answer is calculated
+                answerBox = Label(text = "") # Default/placeholder text before answer is calculated
                 calculationLayout.add_widget(answerBox)
 
                 backButton = Button(text = "Back")
-                backButton.bind(on_press = lambda x: sm.switch_to(mathsScreen, transition=SlideTransition(direction = "right", duration = TRANSITIONSPEED)))
+                backButton.bind(on_press = lambda x: sm.switch_to(mathsScreen, direction = "right", duration = TRANSITIONSPEED))
                 mainLayout.add_widget(backButton) # Back button switches back to the main screen, reversing the transition.
 
                 
@@ -254,11 +270,11 @@ class equationBuddy(App): # Define the main class for the app
                 calculateButton.bind(on_press = lambda x: suvat(inputBoxS.text, inputBoxU.text, inputBoxV.text, inputBoxA.text, inputBoxT.text, roundingCheckbox.active))
                 calculateLayout.add_widget(calculateButton)
 
-                answerBox = Label(text = "Answer goes here (DEBUG)")
+                answerBox = Label(text = "")
                 calculateLayout.add_widget(answerBox)
 
                 backButton = Button(text = "Back")
-                backButton.bind(on_press = lambda x: sm.switch_to(mathsScreen, transition=SlideTransition(direction = "right", duration = TRANSITIONSPEED)))
+                backButton.bind(on_press = lambda x: sm.switch_to(mathsScreen, direction = "right", duration = TRANSITIONSPEED))
                 mainLayout.add_widget(backButton)
 
                 def suvat(s, u, v, a, t, rounding): #tmp before they are imported from main file
@@ -268,6 +284,7 @@ class equationBuddy(App): # Define the main class for the app
         mainScreen = mainMenuScreen(name = "main") # Define the screens with names
         mathsScreen = mathsSelectScreen(name = "maths")
         physicsScreen = physicsSelectScreen(name = "physics")
+        pascalsLineScreen = pascalsLineCalculatorScreen(name = "pascalsline")
         areaSelScreen = areaSelectScreen(name = "areasel")
         quadraticScreen = quadraticCalculatorScreen(name = "quadratic")
         suvatScreen = suvatCalculatorScreen(name = "suvat")
