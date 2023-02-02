@@ -309,7 +309,6 @@ def quadraticFormula(coA, coB, coC, rounding):
 	answer2 = answer2 / (2 * coA)
 	print(answer1, answer2)
 	finalresult = QuadraticErrorChecker(answer1, answer2, rounding)
-	print(f"{finalresult=} AFTER RETURN")
 	return finalresult
 	
 def physicsValues():
