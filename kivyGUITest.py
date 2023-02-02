@@ -5,7 +5,9 @@ from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.screenmanager import Screen, ScreenManager, SlideTransition
 from kivy.uix.checkbox import CheckBox
+from kivy.uix.dropdown import DropDown
 from kivy.lang import Builder
+from functools import partial
 import equationBuddy as eb
 import kivy
 import regex as re
@@ -86,7 +88,7 @@ class equationBuddy(App): # Define the main class for the app
                     multiline = False, 
                     hint_text = "Row", 
                     input_type = "text",
-                    input_filter = "float")
+                    input_filter = "int")
 
                 mainLayout.add_widget(rowInputBox)
 
@@ -194,17 +196,46 @@ class equationBuddy(App): # Define the main class for the app
                 roundingLayout = BoxLayout(orientation = "horizontal") # Make a nested horizontal layout for the rounding text and checkbox
                 mainLayout.add_widget(roundingLayout)
 
-                roundingLabel = Label(text = "Rounding") # Add the text label on the left
+                roundingLabel = Label(text = "Rounding", size_hint = (0.3, 1)) # Add the text label on the left
                 roundingLayout.add_widget(roundingLabel)
 
-                roundingCheckbox = CheckBox(active = False) # Stack the checkbox to the right with a default state of off.
-                roundingLayout.add_widget(roundingCheckbox)
+                roundingDropdown = DropDown() # This snippet waa taken from the official kivy docs
+                options = ["None", "3sf", "3dp", "2dp", "1dp"]
+                for option in options:
+                    # When adding widgets, we need to specify the height manually
+                    # (disabling the size_hint_y) so the dropdown can calculate
+                    # the area it needs.
+
+                    btn = Button(text=option, size_hint_y=None, height=44)
+
+                    # for each button, attach a callback that will call the select() method
+                    # on the dropdown. We'll pass the text of the button as the data of the
+                    # selection.
+                    btn.bind(on_release=lambda btn: roundingDropdown.select(btn.text))
+
+                    # then add the button inside the dropdown
+                    roundingDropdown.add_widget(btn)
+
+                # create a big main button
+                mainbutton = Button(text='Choose Rounding', size_hint=(0.7, 1))
+
+                # show the dropdown menu when the main button is released
+                # note: all the bind() calls pass the instance of the caller (here, the
+                # mainbutton instance) as the first argument of the callback (here,
+                # dropdown.open.).
+                mainbutton.bind(on_release=roundingDropdown.open)
+
+                # one last thing, listen for the selection in the dropdown list and
+                # assign the data to the button text.
+                roundingDropdown.bind(on_select=lambda instance, x: setattr(mainbutton, 'text', x))
+
+                roundingLayout.add_widget(mainbutton)
 
                 calculationLayout = BoxLayout(orientation = "horizontal") #Another nested layout for calculation stuff
                 mainLayout.add_widget(calculationLayout)
 
                 calculateButton = Button(text = "Calculate for x")
-                calculateButton.bind(on_press = lambda x: quadratic(inputBoxA.text, inputBoxB.text, inputBoxC.text, roundingCheckbox.active))
+                calculateButton.bind(on_press = lambda x: quadratic(inputBoxA.text, inputBoxB.text, inputBoxC.text, mainbutton.text))
                 calculationLayout.add_widget(calculateButton)
 
                 answerBox = Label(text = "") # Default/placeholder text before answer is calculated

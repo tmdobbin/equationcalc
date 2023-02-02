@@ -3,6 +3,25 @@ import ecFunctions as ec
 from math import factorial
 pi = math.pi
 
+def roundToNsf(value, nsf): # Code snippet from https://stackoverflow.com/questions/45178528/round-to-significant-figures-in-python (Uladzimir Treihis)
+    """
+    Rounds the number to the provided number of significant figures.
+    """
+
+    integer_part = math.floor(value)
+    if integer_part > 0:
+        integer_part_len = len(str(integer_part))
+        return round(value, nsf-integer_part_len)
+    else:
+        str_value = str(value)
+        #if of the form "8e-05"
+        if '-' in str_value:
+            index = int(str_value[str_value.find('-')+1:]) - 1
+        else:
+            st = {'1', '2', '3', '4', '5', '6', '7', '8', '9'}
+            index = next((i for i, ch in enumerate(str(value)) if ch in st), None) - 2
+        return round(value, index+nsf)
+
 def isFloat(num):
 	try:
 		float(num)
@@ -235,6 +254,8 @@ def suvat(s,u,v,a,t,rounding):
 	return answers
 
 def quadraticFormula(coA, coB, coC, rounding):
+
+	# print(f"{rounding=}")
 	
 	finalresult = ""
 	
@@ -257,8 +278,22 @@ def quadraticFormula(coA, coB, coC, rounding):
 		if imaginaryCounter == 2:
 			return ("This equation has no real roots.")
 
-		if rounding:
-			X1 = round(X1, 3)
+		if rounding == "1dp":
+
+			X1 = round(X1, 1)
+			if X1 > 0:
+
+				X1 = -abs(X1)
+
+			else:
+				X1 = abs(X1)
+
+			finalresult = f"x= {str(X1)}"
+
+		elif rounding == "2dp":
+
+			X1 = round(X1, 2)
+
 			if X1 > 0:
 				X1 = -abs(X1)
 
@@ -266,6 +301,25 @@ def quadraticFormula(coA, coB, coC, rounding):
 				X1 = abs(X1)
 
 			finalresult = f"x= {str(X1)}"
+
+		elif rounding == "3dp":
+
+			X1 = round(X1, 3)
+
+			finalresult = f"x= {str(X1)}"
+
+		elif rounding == "3sf":
+
+			X1 = roundToNsf(X1, 3)
+
+			if X1 > 0:
+				X1 = -abs(X1)
+
+			else:
+				X1 = abs(X1)
+
+			finalresult = f"x= {str(X1)}"
+
 			# print ("x =", X1)
 		else:
 			if X1 > 0:
@@ -275,14 +329,48 @@ def quadraticFormula(coA, coB, coC, rounding):
 				X1 = abs(X1)
 			finalresult = f"x= {str(X1)}"
 
-		if rounding:
-			X2 = round(X2, 3)
+		if rounding == "1dp":
+
+			X2 = round(X2, 1)
+			if X2 > 0:
+
+				X2 = -abs(X2)
+
+			else:
+				X1 = abs(X2)
+
+			finalresult = f"{finalresult}\nx= {str(X2)}"
+
+		elif rounding == "2dp":
+
+			X2 = round(X2, 2)
+
 			if X2 > 0:
 				X2 = -abs(X2)
 
 			else:
 				X2 = abs(X2)
+
 			finalresult = f"{finalresult}\nx= {str(X2)}"
+
+		elif rounding == "3dp":
+
+			X2 = round(X2, 3)
+
+			finalresult = f"{finalresult}\nx= {str(X2)}"
+
+		elif rounding == "3sf":
+
+			X2 = roundToNsf(X2, 3)
+
+			if X2 > 0:
+				X2 = -abs(X2)
+
+			else:
+				X2 = abs(X2)
+
+			finalresult = f"{finalresult}\nx= {str(X2)}"
+
 		else:
 			if X2 > 0:
 				X2 = -abs(X2)
