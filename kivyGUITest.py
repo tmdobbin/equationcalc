@@ -196,7 +196,7 @@ class equationBuddy(App): # Define the main class for the app
                 roundingLayout = BoxLayout(orientation = "horizontal") # Make a nested horizontal layout for the rounding text and checkbox
                 mainLayout.add_widget(roundingLayout)
 
-                roundingLabel = Label(text = "Rounding", size_hint = (0.3, 0.5)) # Add the text label on the left
+                roundingLabel = Label(text = "Rounding", size_hint = (0.3, 1)) # Add the text label on the left
                 roundingLayout.add_widget(roundingLabel)
 
                 roundingDropdown = DropDown() # This snippet waa taken from the official kivy docs
@@ -217,7 +217,7 @@ class equationBuddy(App): # Define the main class for the app
                     roundingDropdown.add_widget(btn)
 
                 # create a big main button
-                mainbutton = Button(text='Choose Rounding', size_hint=(0.7, 0.5))
+                mainbutton = Button(text='Choose Rounding', size_hint=(0.7, 1))
 
                 # show the dropdown menu when the main button is released
                 # note: all the bind() calls pass the instance of the caller (here, the
