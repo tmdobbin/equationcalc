@@ -217,7 +217,7 @@ class equationBuddy(App): # Define the main class for the app
                     roundingDropdown.add_widget(btn)
 
                 # create a big main button
-                mainbutton = Button(text='Choose Rounding', size_hint=(0.7, 0.5)
+                mainbutton = Button(text='Choose Rounding', size_hint=(0.7, 0.5))
 
                 # show the dropdown menu when the main button is released
                 # note: all the bind() calls pass the instance of the caller (here, the
