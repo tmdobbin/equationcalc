@@ -206,7 +206,7 @@ class equationBuddy(App): # Define the main class for the app
                     # (disabling the size_hint_y) so the dropdown can calculate
                     # the area it needs.
 
-                    btn = Button(text=option, size_hint_y=None, height=44)
+                    btn = Button(text=option, size_hint_y=None, height=100)
 
                     # for each button, attach a callback that will call the select() method
                     # on the dropdown. We'll pass the text of the button as the data of the
