@@ -306,6 +306,12 @@ def quadraticFormula(coA, coB, coC, rounding):
 
 			X1 = round(X1, 3)
 
+			if X1 > 0:
+				X1 = -abs(X1)
+
+			else:
+				X1 = abs(X1)
+
 			finalresult = f"x= {str(X1)}"
 
 		elif rounding == "3sf":
@@ -356,6 +362,12 @@ def quadraticFormula(coA, coB, coC, rounding):
 		elif rounding == "3dp":
 
 			X2 = round(X2, 3)
+
+			if X2 > 0:
+				X2 = -abs(X2)
+
+			else:
+				X2 = abs(X2)
 
 			finalresult = f"{finalresult}\nx= {str(X2)}"
 
