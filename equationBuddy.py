@@ -54,30 +54,36 @@ def suvat(s,u,v,a,t,rounding):
 	def errorChecker(num, solvingFor):
 		try:
 			float(num)
-			if rounding:
+			if rounding == "1dp":
+				num = round(num, 1)
+			elif rounding == "2dp":
+				num = round(num, 2)
+			elif rounding == "3dp":
 				num = round(num, 3)
+			#elif rounding == "3sf":
+				#num = roundToNsf(num, 3)
+				print("number has been rounded to 3dp", "NUM", num)
+			else:
+				pass
 			return f"{solvingFor} = {num}"
 		except:
 			return ("This scenario is impossible")
 	
-	print("{:=^70}".format("Suvat Solver"))
-	print()
-	#s = input("s (if unknown put '') = ")
 	if s != "":
 		s = float(s)
-	#u = input("u (if unknown put '') = ")
+
 	if u != "":
 		u = float(u)
-	#v = input("v (if unknown put '') = ")
+
 	if v != "":
 		v = float(v)
-	#a = input("a (if unknown put '') = ")
+
 	if a != "":
 		a = float(a)
-	#t = input("t (if unknown put '') = ")
+
 	if t != "":
 		t = float(t)
-	print()
+
 	answer = ""
 	answers = ""
 	
@@ -314,19 +320,18 @@ def quadraticFormula(coA, coB, coC, rounding):
 
 			finalresult = f"x= {str(X1)}"
 
-		elif rounding == "3sf":
+		#elif rounding == "3sf":
 
-			X1 = roundToNsf(X1, 3)
+			# X1 = roundToNsf(X1, 3)
 
-			if X1 > 0:
-				X1 = -abs(X1)
+			# if X1 > 0:
+			# 	X1 = -abs(X1)
 
-			else:
-				X1 = abs(X1)
+			# else:
+			# 	X1 = abs(X1)
 
-			finalresult = f"x= {str(X1)}"
+			# finalresult = f"x= {str(X1)}"
 
-			# print ("x =", X1)
 		else:
 			if X1 > 0:
 				X1 = -abs(X1)
@@ -371,17 +376,17 @@ def quadraticFormula(coA, coB, coC, rounding):
 
 			finalresult = f"{finalresult}\nx= {str(X2)}"
 
-		elif rounding == "3sf":
+		#elif rounding == "3sf":
 
-			X2 = roundToNsf(X2, 3)
+			# X2 = roundToNsf(X2, 3)
 
-			if X2 > 0:
-				X2 = -abs(X2)
+			# if X2 > 0:
+			# 	X2 = -abs(X2)
 
-			else:
-				X2 = abs(X2)
+			# else:
+			# 	X2 = abs(X2)
 
-			finalresult = f"{finalresult}\nx= {str(X2)}"
+			# finalresult = f"{finalresult}\nx= {str(X2)}"
 
 		else:
 			if X2 > 0:

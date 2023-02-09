@@ -18,7 +18,7 @@ class equationBuddy(App): # Define the main class for the app
     
     def build(self): # Define the build process for the GUI
 
-        sm = ScreenManager() # Setup the screen manager
+        sm = ScreenManager(transition=SlideTransition()) # Setup the screen manager
 
         class mainMenuScreen(Screen): # Define the class for the main menu
 
@@ -200,34 +200,34 @@ class equationBuddy(App): # Define the main class for the app
                 roundingLayout.add_widget(roundingLabel)
 
                 roundingDropdown = DropDown() # This snippet waa taken from the official kivy docs
-                options = ["None", "3sf", "3dp", "2dp", "1dp"]
+                options = ["None", "3dp", "2dp", "1dp"] #, "3sf"]
                 for option in options:
                     # When adding widgets, we need to specify the height manually
                     # (disabling the size_hint_y) so the dropdown can calculate
                     # the area it needs.
 
-                    btn = Button(text=option, size_hint_y=None, height=100)
+                    btn = Button(text = (option), size_hint_y = None, height = 100)
 
                     # for each button, attach a callback that will call the select() method
                     # on the dropdown. We'll pass the text of the button as the data of the
                     # selection.
-                    btn.bind(on_release=lambda btn: roundingDropdown.select(btn.text))
+                    btn.bind(on_release = lambda btn: roundingDropdown.select(btn.text))
 
                     # then add the button inside the dropdown
                     roundingDropdown.add_widget(btn)
 
                 # create a big main button
-                mainbutton = Button(text='Choose Rounding', size_hint=(0.7, 1))
+                mainbutton = Button(text = 'Choose Rounding', size_hint = (0.7, 1))
 
                 # show the dropdown menu when the main button is released
                 # note: all the bind() calls pass the instance of the caller (here, the
                 # mainbutton instance) as the first argument of the callback (here,
                 # dropdown.open.).
-                mainbutton.bind(on_release=roundingDropdown.open)
+                mainbutton.bind(on_release = roundingDropdown.open)
 
                 # one last thing, listen for the selection in the dropdown list and
                 # assign the data to the button text.
-                roundingDropdown.bind(on_select=lambda instance, x: setattr(mainbutton, 'text', x))
+                roundingDropdown.bind(on_select = lambda instance, x: setattr(mainbutton, 'text', x))
 
                 roundingLayout.add_widget(mainbutton)
 
@@ -303,17 +303,47 @@ class equationBuddy(App): # Define the main class for the app
                 roundingLayout = BoxLayout(orientation = "horizontal")
                 mainLayout.add_widget(roundingLayout)
 
-                roundingLabel = Label(text = "Rounding")
+                roundingLabel = Label(text = "Rounding", size_hint = (0.3, 1)) # Add the text label on the left
                 roundingLayout.add_widget(roundingLabel)
 
-                roundingCheckbox = CheckBox(active = False)
-                roundingLayout.add_widget(roundingCheckbox)
+                roundingDropdown = DropDown() # This snippet waa taken from the official kivy docs
+                options = ["None", "3dp", "2dp", "1dp"] # "3sf",]
+                for option in options:
+                    # When adding widgets, we need to specify the height manually
+                    # (disabling the size_hint_y) so the dropdown can calculate
+                    # the area it needs.
+
+                    btn = Button(text = option, size_hint_y = None, height = 100)
+
+                    # for each button, attach a callback that will call the select() method
+                    # on the dropdown. We'll pass the text of the button as the data of the
+                    # selection.
+                    btn.bind(on_release = lambda btn: roundingDropdown.select(btn.text))
+
+                    # then add the button inside the dropdown
+                    roundingDropdown.add_widget(btn)
+
+                # one last thing, listen for the selection in the dropdown list and
+                # assign the data to the button text.
+                roundingDropdown.bind(on_select = lambda instance, x: setattr(mainbutton, 'text', x))
+
+                # create a big main button
+                mainbutton = Button(text = 'Choose Rounding', size_hint = (0.7, 1))
+
+                # show the dropdown menu when the main button is released
+                # note: all the bind() calls pass the instance of the caller (here, the
+                # mainbutton instance) as the first argument of the callback (here,
+                # dropdown.open.).
+                mainbutton.bind(on_release = roundingDropdown.open)
+
+                roundingLayout.add_widget(mainbutton)
+
 
                 calculateLayout = BoxLayout(orientation = "horizontal")
                 mainLayout.add_widget(calculateLayout)
 
                 calculateButton = Button(text = "Calculate missing values")
-                calculateButton.bind(on_press = lambda x: suvat(inputBoxS.text, inputBoxU.text, inputBoxV.text, inputBoxA.text, inputBoxT.text, roundingCheckbox.active))
+                calculateButton.bind(on_press = lambda x: suvat(inputBoxS.text, inputBoxU.text, inputBoxV.text, inputBoxA.text, inputBoxT.text, mainbutton.text))
                 calculateLayout.add_widget(calculateButton)
 
                 answerBox = Label(text = "")
