@@ -554,7 +554,7 @@ def mathsMenu():
 			rounding = True
 		else:
 			rounding = False
-		print(quadraticFormula(coA, coB, coC,rounding))
+		print(quadraticFormula(coA, coB, coC, rounding))
 		returnToMenu()
 	elif mathOption == 3:
 		areaMenu()
