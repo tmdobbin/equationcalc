@@ -1,3 +1,4 @@
+#Version 0.2.1
 import math
 import ecFunctions as ec
 from math import factorial
