@@ -1,34 +1,19 @@
 #Version 0.2.1
 import math
-import ecFunctions as ec
 from math import factorial
 pi = math.pi
 
-def roundToNsf(value, nsf): # Code snippet from https://stackoverflow.com/questions/45178528/round-to-significant-figures-in-python (Uladzimir Treihis)
-    """
-    Rounds the number to the provided number of significant figures.
-    """
+try:
+	import ecFunctions as ec
+except:
+	print("WARNING Library File Not Found!")
+	print("Download the latest library file from https://github.com/TmDobbin/equationcalc/")
+	exit()
+else:
+	print("Library File Found")
+	import ecFunctions as ec
 
-    integer_part = math.floor(value)
-    if integer_part > 0:
-        integer_part_len = len(str(integer_part))
-        return round(value, nsf-integer_part_len)
-    else:
-        str_value = str(value)
-        #if of the form "8e-05"
-        if '-' in str_value:
-            index = int(str_value[str_value.find('-')+1:]) - 1
-        else:
-            st = {'1', '2', '3', '4', '5', '6', '7', '8', '9'}
-            index = next((i for i, ch in enumerate(str(value)) if ch in st), None) - 2
-        return round(value, index+nsf)
 
-def isFloat(num):
-	try:
-		float(num)
-		return True
-	except ValueError:
-		return 
 
 def pascalsLine(n):
 
@@ -88,13 +73,13 @@ def suvat(s,u,v,a,t,rounding):
 	answer = ""
 	answers = ""
 	
-	if isFloat(t) == True and t < 0:
+	if ec.isFloat(t) == True and t < 0:
 		return ("Time can not be negative")
 		
-	elif isFloat(v) == True and isFloat(u) == True and isFloat(a) == True and v < u and a > 0:
+	elif ec.isFloat(v) == True and ec.isFloat(u) == True and ec.isFloat(a) == True and v < u and a > 0:
 		return ("This scenario is not possible")
 		
-	elif isFloat(v) == True and isFloat(u) == True and isFloat(a) == True and v > u and a < 0:
+	elif ec.isFloat(v) == True and ec.isFloat(u) == True and ec.isFloat(a) == True and v > u and a < 0:
 		return ("This scenario is not possible")
 		
 	elif a == 0 and v != u:
@@ -436,61 +421,6 @@ def quadraticFormula(coA, coB, coC, rounding):
 	
 	return finalresult
 	
-def physicsValues():
-	
-	print("{:=^70}".format("Physics Values"))
-	print()
-	print("Speed Of Light = 3 x 10^8 m/s")
-	print("Electron Charge = 1.60 x 10^-19 C")
-	print("Plancks Constant = 6.63 x 10^-34 J/s")
-	print("Electron Mass = 9.11 x 10^-31 kg")
-	print("Proton Mass = 1.67 x 10^-27 kg")
-	print("Neutron Mass = 1.67 x 10^-27 kg")
-	print("Gravity = 9.81 N/kg")
-
-def photonEnergy():
-	print("{:=^70}".format("PHOTON ENERGY"))
-	print()
-	
-	speedOfLight = 3*10**8
-	plancksConstant = 6.63*10**-34
-
-	wavelength = input("wavelength (in nanometres) = ")
-
-	if wavelength == "":
-		frequency = input("frequency (in hertz) = ")
-
-		if " x 10^" in frequency:
-			frequency = ec.standardFormUserToInt(frequency)
-			E = str(plancksConstant * frequency)
-			E1 = E[:5]
-			E2 = E[len(E)-3:]
-			E3 = "E = "+E1+" x 10^"+E2
-			print(E3)
-
-		else:
-			frequency = float(frequency)
-			E = str(plancksConstant * frequency)
-			E1 = E[:5]
-			E2 = E[len(E)-3:]
-			E3 = "E = "+E1+" x 10^"+E2
-			print(E3)
-
-	elif " x 10^" in wavelength:
-		wavelength = ec.standardFormUserToInt(wavelength)
-		E = str(plancksConstant * speedOfLight / wavelength * (10 ** 9))
-		E1 = E[:5]
-		E2 = E[len(E)-3:]
-		E3 = "E = "+E1+" x 10^"+E2
-		print(E3)
-
-	else:
-		wavelength = float(wavelength)
-		E = str(plancksConstant * speedOfLight / wavelength  * (10 ** 9))
-		E1 = E[:5]
-		E2 = E[len(E)-3:]
-		E3 = "E = "+E1+" x 10^"+E2
-		print(E3)
 
 def returnToMenu():
 
@@ -505,31 +435,49 @@ def returnToMenu():
 		print("\nInvalid answer given. Closing program.")
 		print("\nThank you for using Equation Buddy!")
 
+"""def trigMenu():
+	print("{:=^70}".format("Trigonometry Rules"))
+	print("1. Sine Rule")
+	print("2. Cosine Rule")
+
+	trigOption = int(input("Enter an Option"))
+
+	if trigOption == 1:
+		print("{:=^70}".format("Sine Rule"))
+		print("If unknown leave blank")
+		sinA = float(input("Enter Angle A: "))
+		a = float(input("Enter Side A: "))
+		SinB = float(input("Enter Angle B: "))
+		b = float(input("Enter Side B: "))
+
+		values = [sinA, a, sinB, b]
+		blanks = 0 
+
+		for value in values():
+			if value == "":
+				blanks += 1
+		
+		if blanks > 1:
+			print("Too many Values left blank")
+			returnToMenu()
+
+	if sinA == "" or SinB == "":
+		if sinA == "":
+			unknownA = sinA
+		elif sinB =="":
+"""
+
+			
 def runMenu():
+
 	print("{:=^70}".format("Equation Buddy"))
-	print("1. Maths")
-	print("2. Physics")
-	print("3. Exit")
-	
-	option = int(input("Enter an option"))
-	
-	if option == 1:
-		mathsMenu()
-	elif option == 2:
-		physicsMenu()
-	elif option == 3:
-		exit()
-	else:
-		print("Please select a valid option")
-	
-def mathsMenu():
-	print("{:=^70}".format("Maths Functions"))
 	print("1. Suvat Solver")
 	print("2. Quadratic Solver")
 	print("3. Area Solver")
 	print("4. Pascals Line")
+	#print("5. Trigonometry Rules")
 	print("5. Main Menu")
-	print("5. Exit")	
+	print("6. Exit")	
 	
 	mathOption = int(input("Enter an option"))
 	
@@ -568,47 +516,11 @@ def mathsMenu():
 		returnToMenu()
 	elif mathOption == 6:
 		exit()
+	#elif mathOption == 5:
+		#trigMenu()
 	else:
 		print("Please select a valid option")
-		
-def physicsMenu():
-	print("{:=^70}".format("Physics Functions"))
-	print("1. Physics Values")
-	print("2. Photon Energy")
-	print("3. Main Menu")
-	print("4. Exit")
 	
-	physicsOption = int(input("Enter an Option"))
-	
-	if physicsOption == 1:
-		physicsValues()
-		returnToMenu()
-	elif physicsOption == 2:
-		photonEnergy()
-		returnToMenu()
-	elif physicsOption == 3:
-		runMenu()
-	elif physicsOption == 4:
-		exit()
-	else:
-		print("Please select a valid option")
-  
-def get_value():
-    
-    valid = False
-    while valid == False:
-        
-        try:
-            value = float(input())
-            if value > 0:
-                valid = True
-            else:
-                print("You must enter a positive number")
-
-        except:
-            print("You must enter a positive number without any characters or symbols")
-    return value
-
 def calculate_square_area(side):
     area = side**2
     return area
@@ -641,51 +553,51 @@ def calculate_parallelogram_area(base,height):
 def square():
     
     print("enter side of square")
-    side = get_value()
+    side = ec.getValue()
     area = calculate_square_area(side)
     print("the area of the square is", area)
 
 def elipse():
     
     print("enter radius 1 of your elipse")
-    a = get_value()
+    a = ec.getValue()
     print("enter radius 2 of your elipse")
-    b = get_value()
+    b = ec.getValue()
     area = calculate_elipse_area(a,b)
     print("The area of your elipse is", area)
 
 def circle():
     
     print("enter the radius of the circle")
-    radius = get_value()
+    radius = ec.getValue()
     area = calculate_circle_area(radius, pi)
     print("the area of your circle is", area)
 
 def triangle():
 
     print ("enter the base of your triangle")
-    base = get_value()
+    base = ec.getValue()
     print("enter the height of your triangle")
-    height = get_value()
+    height = ec.getValue()
     area = calculate_triangle_area(base, height)
     print ("the area of your triangle is", area)
 
 def trapezium():
 
     print ("Enter side A of your trapezium")
-    base = get_value()
+    base = ec.getValue()
     print("Enter side B of your trapezium")
-    top = get_value()
+    top = ec.getValue()
     print("Enter the height of your trapezium")
-    height = get_value()
+    height = ec.getValue()
     area = calculate_trapezium_area(base, top, height)
     print ("the area of your trapezium", area)
 
 def parallelogram():
     print ("Enter the base of your parallelogram")
-    base = get_value()
+    base = ec.getValue()
     print ("Enter the height of your parallelogram")
-    height = get_value()
+    height = ec.getValue()
     area = calculate_parallelogram_area(base,height)
     print ("The area of your parallelogram is", area) 
 
@@ -730,4 +642,6 @@ def exit():
 
 if __name__ == "__main__":    
 	runMenu()
+
+
 
