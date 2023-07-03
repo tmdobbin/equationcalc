@@ -1,38 +1,36 @@
-#Version 0.2.1
+#Version 0.2.2 UNFINISHED
+#import all the mathematical functions we need
 import math
-from math import factorial
+from math import factorial 
 pi = math.pi
 
 try:
-	import ecFunctions as ec
+	import ecFunctions as ec #if the library file is in the wrong place or broken in some way then this will alert the user of the fact 
 except:
 	print("WARNING Library File Not Found!")
 	print("Download the latest library file from https://github.com/TmDobbin/equationcalc/")
-	exit()
+	exit() #shows the user where to find the library file to use the app and breaks the code as the library file is essential for the code to run
 else:
 	print("Library File Found")
-	import ecFunctions as ec
-
+	import ecFunctions as ec #no error so runs as usual
 
 
 def pascalsLine(n):
-
 	
-	answer5 = ""
+	line = []
 	for i in range(n):
 		b = n - i
 		facN = factorial(n)
 		facI = factorial(i)
 		facB = factorial(b)
-		answer4 = facI * facB
-		answer4 = facN / answer4
-		answer4 = float(answer4)
+		answer4 = float(facN /(facI * facB))
 		nlen = len(str(answer4))
 		answer4 = str(answer4)
 		answer4 = (answer4[:nlen-2])
-		answer5 = answer5 +" "+ str(answer4)
+		line.append(answer4)
 	
-	return (answer5 +" "+"1")
+	line.append("1")
+	return(line)
 
 
 def suvat(s,u,v,a,t,rounding):
@@ -434,43 +432,11 @@ def returnToMenu():
 	else:
 		print("\nInvalid answer given. Closing program.")
 		print("\nThank you for using Equation Buddy!")
-
-"""def trigMenu():
-	print("{:=^70}".format("Trigonometry Rules"))
-	print("1. Sine Rule")
-	print("2. Cosine Rule")
-
-	trigOption = int(input("Enter an Option"))
-
-	if trigOption == 1:
-		print("{:=^70}".format("Sine Rule"))
-		print("If unknown leave blank")
-		sinA = float(input("Enter Angle A: "))
-		a = float(input("Enter Side A: "))
-		SinB = float(input("Enter Angle B: "))
-		b = float(input("Enter Side B: "))
-
-		values = [sinA, a, sinB, b]
-		blanks = 0 
-
-		for value in values():
-			if value == "":
-				blanks += 1
-		
-		if blanks > 1:
-			print("Too many Values left blank")
-			returnToMenu()
-
-	if sinA == "" or SinB == "":
-		if sinA == "":
-			unknownA = sinA
-		elif sinB =="":
-"""
-
 			
 def runMenu():
 
 	print("{:=^70}".format("Equation Buddy"))
+	print()
 	print("1. Suvat Solver")
 	print("2. Quadratic Solver")
 	print("3. Area Solver")
@@ -478,8 +444,8 @@ def runMenu():
 	#print("5. Trigonometry Rules")
 	print("5. Main Menu")
 	print("6. Exit")	
-	
-	mathOption = int(input("Enter an option"))
+	print()
+	mathOption = int(input("Enter an option: "))
 	
 	if mathOption == 1:
 		s = input("S = ")
@@ -512,7 +478,20 @@ def runMenu():
 		runMenu()
 	elif mathOption == 4:
 		n = int(input("n = "))
-		print(pascalsLine(n))
+		pList = pascalsLine(n)
+		r = int(input("Which value of the line would you like: "))
+		print(pList[r])
+
+		anotherVal = "y"
+
+		while anotherVal == "y":
+			anotherVal = input("Would you like another value (y/n)")
+			if anotherVal == "n":
+				break
+			else:
+				print(pList[int(input("Which value of the line would you like: "))])
+
+
 		returnToMenu()
 	elif mathOption == 6:
 		exit()
@@ -642,6 +621,4 @@ def exit():
 
 if __name__ == "__main__":    
 	runMenu()
-
-
 
