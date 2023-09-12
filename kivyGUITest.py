@@ -35,7 +35,17 @@ class equationBuddy(App): # Define the main class for the app
 
                 switchToSuvatButton = Button(text = "Physics Calculators")
                 switchToSuvatButton.bind(on_press = lambda x: sm.switch_to(physicsScreen, duration = TRANSITIONSPEED, direction = "left"))
-                mainLayout.add_widget(switchToSuvatButton) #Same stuff
+                # mainLayout.add_widget(switchToSuvatButton) #Same stuff
+
+                overlayLabel = Label(
+                    text="v0.2.1",
+                    opacity=0.5,
+                    size_hint=(None, None),
+                    size=(50, 50),
+                    pos_hint={'right': 1, 'bottom': 1},
+                )
+                self.add_widget(overlayLabel)
+
 
         class mathsSelectScreen(Screen):
 
