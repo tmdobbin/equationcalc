@@ -39,10 +39,11 @@ class equationBuddy(App): # Define the main class for the app
 
                 overlayLabel = Label(
                     text="v0.2.1",
-                    opacity=0.5,
+                    opacity=0.3,
                     size_hint=(None, None),
                     size=(50, 50),
                     pos_hint={'right': 1, 'bottom': 1},
+                    halign='right'
                 )
                 self.add_widget(overlayLabel)
 

@@ -421,7 +421,7 @@ def quadraticFormula(coA, coB, coC, rounding):
 	
 
 def returnToMenu():
-
+ 
 	print("\n{:=^70}".format("Return To Menu?"))
 	menuReturn = input("\nWould you like to go back to menu? (y/n)\n")
 	if menuReturn == "y":
