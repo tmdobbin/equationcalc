@@ -35,8 +35,6 @@ if __name__ == "__main__":
         round2 = string[len(string)-3:]
         return int(float(round1))
 
-    print(standardFormCompToUser("2e+5"))
-
     def standardFormUserToInt(sForm):
 
         x = sForm.partition(" x 10^")
@@ -48,11 +46,6 @@ if __name__ == "__main__":
             answer = int(answer)
 
         return answer
-
-    print(standardFormUserToInt("2.45 x 10^5"))
-    print(standardFormUserToInt("2.45 x 10^-5"))
-
-
 
     def roundToNsf(value, nsf): 
 
