@@ -2,7 +2,7 @@
 if __name__ == "__main__":
     print("This is a library file")
 
-else:
+#else:
     def inputInt(message):
         valid = False
         while not valid:
@@ -33,22 +33,26 @@ else:
         string = str(answer)
         round1 = str(round(float(string[:6]), 3))
         round2 = string[len(string)-3:]
-        return "E =", round1, "x 10^" + round2
+        return int(float(round1))
+
+    print(standardFormCompToUser("2e+5"))
 
     def standardFormUserToInt(sForm):
-        x = sForm.partition(" x 10^")
-        if int(x[2]) < 0:
-            answer = "0."
-            for i in range(abs(int(x[2]))-1):
-                answer += "0"
-            answer += x[0]
 
-        if int(x[2]) > 0:
-            answer = x[0]
-            for i in range(abs(int(x[2]))-1):
-                answer += "0"
+        x = sForm.partition(" x 10^")
+        answer = float(str(x[0]).strip()) * 10 ** float(str(x[2]).strip())
+
+        if "e" in str(answer):
+            answer = format(answer, ".7f")
+        elif ".0000" in str(answer):
+            answer = int(answer)
 
         return answer
+
+    print(standardFormUserToInt("2.45 x 10^5"))
+    print(standardFormUserToInt("2.45 x 10^-5"))
+
+
 
     def roundToNsf(value, nsf): 
 
